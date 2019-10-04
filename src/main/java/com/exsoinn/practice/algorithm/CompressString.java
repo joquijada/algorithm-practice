@@ -1,13 +1,13 @@
 package com.exsoinn.practice.algorithm;
 
-import org.springframework.util.StringUtils;
+
 
 /**
  * @author josequijada
  */
 public class CompressString {
   public String compress(String pStr) {
-    if (StringUtils.isEmpty(pStr)) return pStr;
+    if (null == pStr || pStr.length() == 0) return pStr;
 
     int matrix[][] = new int[pStr.length()][26];
 
@@ -32,7 +32,7 @@ public class CompressString {
     }
 
     // If the "compressed" string did not shrink, return original. We basically
-    // multiple the number of compressed characters by 2, because we have a secondary
+    // multiply the number of compressed characters by 2, because we have a secondary
     // character per compressed character in the string, namely the number of times
     // the character appears consecutively at the specified position
     if ((pos)*2 >= pStr.length()) {

@@ -1,5 +1,7 @@
 package com.exsoinn.practice.algorithm;
 
+import java.util.Collection;
+
 /**
  * @author josequijada
  */
@@ -62,12 +64,16 @@ public class Node<T> {
   }
 
   /**
-   * Used a while card because this method can print any type of {@link Node} (I.e. it invokes
+   * Used a wild card because this method can print any type of {@link Node} (I.e. it invokes
    * {@link Object} methods only).
    * @param head
    */
   public static void printList(Node<?> head) {
+    printList(head, null);
+  }
 
+
+  public static void printList(Node<?> head, Collection<? super Object> res) {
     int size = 0;
     if (null != head) {
       size = size(head);
@@ -79,7 +85,11 @@ public class Node<T> {
     System.out.print("[");
     int cnt = 1;
     while (null != head) {
-      System.out.print(head.getData());
+      Object data = head.getData();
+      System.out.print(data);
+      if (null != res) {
+        res.add(data);
+      }
       if (cnt < size) {
         System.out.print(", ");
       }

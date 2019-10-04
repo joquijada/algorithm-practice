@@ -12,7 +12,7 @@ public class StringPractice {
     }
 
     char[] ary = pStr.toCharArray();
-    for (int i = 0; i < ary.length/2; i++) {
+    for (int i = 0; i < ary.length / 2; i++) {
       int leftIdx = i;
       int rightIdx = ary.length - 1 - i;
 
@@ -50,6 +50,15 @@ public class StringPractice {
 
     String toReverse = "This is awesome!!!";
     System.out.println("Reverse of " + toReverse + " is " + reverse(toReverse));
+
+    String s2 = "abc";
+    subString("abc", 0, 0);
+  }
+
+  private static void subString(String pStr, int start, int end) {
+    System.out.println(
+            String.format("Substring from index %d to index %d for string %s is ", start, end,
+                    pStr));
   }
 
 }
