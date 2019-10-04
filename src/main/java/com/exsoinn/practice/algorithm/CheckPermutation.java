@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * <strong>Problem:</strong> Given two strings, determine if one is a permutation of the other,
+ * <strong>Problem:</strong> Given two strings, determine if one is a permutation of the other.
  * <br/>
  * Date: 09/13/2019
  * Start: 08:06PM
@@ -18,6 +18,11 @@ import java.util.Optional;
  * 2. Are strings made up of unique characters only? If not, then it's just a matter of throwing str1 and str2 characters into two corresponding sets, and doing an equality comparison between the two.
  * 3. What's the maximum possible length of the string? If I need to keep a count, need to beware I don't over/under flow the integer type being used (byte, short, int, long) for example.
  *
+ * <br/><br/>
+ * <strong>Assumptions:</strong><br/>
+ * 1. Strings can contain non-alpha characters, in which case those are ignored for purposes of determining
+ * if the strings permutations of each other or not.<br/>
+ * 2. Case does not matter (I.e. checks can be case-insensitive)
  *
  * <br/><br/>
  * <strong>Brainstorm:</strong><br/>
@@ -29,9 +34,10 @@ import java.util.Optional;
  *
  * <br/><br/>
  * <strong>Algorithm:</strong><br/>
- * 1. Are strings different length? Return false
- * 2. Are strings equal? Return true
- *
+ * Have a map of character to count, where the first string will increment the character count. The second
+ * string will decrement. At the end we check that all character counts is 0. While parsing the second
+ * string we return false immediately if a character is not found in map, because that means second string
+ * contains characters that the first string does not.
  *
  * <br/><br/>
  *
@@ -49,19 +55,10 @@ import java.util.Optional;
  */
 public class CheckPermutation {
   boolean permutation(String str1, String str2) {
-    // Optimization: Not same length, not a permutation
-    if (str1.length() != str2.length()) {
-      return false;
-    }
-
-    if (str1.equals(str2)) {
-      return true;
-    }
-
     Map<Character, Integer> charCnt = new HashMap<>();
-    boolean res = checkMap(str1, charCnt, true);
+    checkMap(str1, charCnt, true);
 
-    res = checkMap(str2, charCnt, false);
+    boolean res = checkMap(str2, charCnt, false);
 
     if (!res) {
       return false;
@@ -80,10 +77,15 @@ public class CheckPermutation {
     char[] ary = str.toCharArray();
 
     for (int i = 0; i < ary.length; i++) {
-      char curChar = ary[i];
+      char curChar = Character.toLowerCase(ary[i]);
+
+      // Ignore non-alphabetic characters
+      if (!Character.isAlphabetic(curChar)) {
+        continue;
+      }
       Integer cnt = charCnt.get(curChar);
       if (cnt == null) {
-        // we're checking second string a this character not seen in previous string,
+        // we're checking second string and this character not seen in previous string,
         // cannot be a permutation then
         if (!increment) {
           return false;
@@ -100,6 +102,8 @@ public class CheckPermutation {
           return false;
         }
       }
+
+      charCnt.put(curChar, cnt);
     }
 
     return true;

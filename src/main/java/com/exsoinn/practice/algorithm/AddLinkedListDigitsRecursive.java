@@ -1,6 +1,9 @@
 package com.exsoinn.practice.algorithm;
 
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 /**
  * @author josequijada
@@ -40,10 +43,12 @@ public class AddLinkedListDigitsRecursive {
     return n;
   }
 
-  private static void performAddition(Integer[] ary1, Integer[] ary2) {
+  public static String performAddition(Integer[] ary1, Integer[] ary2) {
     Node<Integer> h = add(Node.buildList(ary1), Node.buildList(ary2), 0);
-    Node.printList(h);
+    Collection<Object> digits = new ArrayList<>();
+    Node.printList(h, digits);
     System.out.println();
+    return digits.stream().map(e -> e.toString()).collect(Collectors.joining(""));
   }
 
   public static void main(String[] args) {
