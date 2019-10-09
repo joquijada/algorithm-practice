@@ -5,6 +5,10 @@ package com.exsoinn.practice.algorithm;
  */
 public class StringPractice {
 
+  private static void testCharacterApi() {
+    System.out.println("'A' numeric value is " + Character.getNumericValue('A'));
+    System.out.println("'a' numeric value is " +Character.getNumericValue('a'));
+  }
 
   public static String reverse(String pStr) {
     if (null == pStr || pStr.length() == 0) {
@@ -27,6 +31,13 @@ public class StringPractice {
     }
 
     return ret;
+  }
+
+
+  private static void subString(String pStr, int start, int end) {
+    System.out.println(
+            String.format("Substring from index %d to index %d for string %s is ", start, end,
+                    pStr));
   }
 
   public static void main(String[] pArgs) {
@@ -53,12 +64,8 @@ public class StringPractice {
 
     String s2 = "abc";
     subString("abc", 0, 0);
-  }
 
-  private static void subString(String pStr, int start, int end) {
-    System.out.println(
-            String.format("Substring from index %d to index %d for string %s is ", start, end,
-                    pStr));
+    testCharacterApi();
   }
 
 }

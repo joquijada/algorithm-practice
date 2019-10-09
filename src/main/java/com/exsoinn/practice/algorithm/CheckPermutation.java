@@ -47,6 +47,15 @@ import java.util.Optional;
  * That's 3*s, which can be reduced to just O(s) - the algorithm is linear in nature
  *
  * I got these ideas from CTCI, 6th Edition, page #49, example #8
+ *
+ * Space: (S), where S is the string length (we check both strings are same length before
+ * proceeding further)C
+ * Can also argue that it's O(1) if it's known ahead of time the character set size
+ * (English alphabet which is just 26 letters, ASCII 128 chars, extended ASCII 256 characters,
+ * entire Java char set which is 2^16 or ~ 64K). The O(1) basically means that size consumption
+ * never goes above the given alphabet size, given the fact that we're using a Map<Character> as
+ * the storage, meaning that equal characters will hash to the same slot. More precisely can say
+ * O(C) where is the character set size, or even more precise still O(min(C, S)), which means the smaller of character set C or string length S is the maximum storage used.
  * </pre>
  *
  * @author josequijada
