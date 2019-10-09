@@ -4,7 +4,8 @@ package com.exsoinn.practice.algorithm;
  * @author josequijada
  */
 public class BubbleSort {
-  private static void sortBubble2(int[] numbersToSort) {
+
+  static void sortBubble2(int[] numbersToSort) {
     int outerExecTimes = 0;
     int innerExecTimes = 0;
     int sumExecs = 0;
@@ -31,7 +32,7 @@ public class BubbleSort {
   }
 
 
-  private static void sortBubble(int[] numbersToSort) {
+  /*static void sortBubble(int[] numbersToSort) {
     int outerExecTimes = 0;
     int innerExecTimes = 0;
 
@@ -60,11 +61,11 @@ public class BubbleSort {
     for (int i = 0; i < numbersToSort.length; i++) {
       System.out.println(numbersToSort[i]);
     }
-  }
+  }*/
 
 
   // {4, 75, 74, 2, 54}
-  private static void sortBubble3(int[] arr) {
+  static void sortBubble3(int[] arr) {
     for (int i = 0; i < arr.length; i++) {
       for (int j = 0; j < arr.length; j++) {
         if (arr[i] < arr[j]) {
