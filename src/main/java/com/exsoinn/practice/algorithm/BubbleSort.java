@@ -86,10 +86,4 @@ public class BubbleSort {
     }
     System.out.println("");
   }
-
-
-  public static void main(String[] args) {
-    int[] numbersToSort = {4, 75, 74, 2, 54};
-    sortBubble3(numbersToSort);
-  }
 }

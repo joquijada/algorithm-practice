@@ -154,15 +154,4 @@ public class URLify {
 
     return cnt;
   }
-
-  public static void main(String[] args) {
-    int[] ary = new int[3];
-
-    int i = 0;
-    ary[i] = 1;
-    ary[++i] = 2;
-    ary[++i] = 3;
-    System.out.println(Arrays.toString(ary));
-  }
-
 }

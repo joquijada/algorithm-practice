@@ -51,14 +51,4 @@ public class AddLinkedListDigitsRecursive {
     return digits.stream().map(e -> e.toString()).collect(Collectors.joining(""));
   }
 
-  public static void main(String[] args) {
-    Integer[] nums1 = {6, 1, 7};
-    Integer[] nums2 = {5, 1, 8};
-    performAddition(nums1, nums2);
-
-    Integer[] nums3 = {9, 1, 7};
-    Integer[] nums4 = {1, 8};
-    performAddition(nums3, nums4);
-  }
-
 }

@@ -99,12 +99,4 @@ public class AllUniqueCharacters {
     // it must be all unique characters string, therefore return true
     return true;
   }
-
-  public static void main(String[] args) {
-    char c = '#';
-    System.out.println("Char num val is " + (int) c);
-    System.out.println("Char num val is (using API) " + Character.getNumericValue(c));
-
-    System.out.println("The character after the max? " + (char) (Character.MAX_VALUE + 1));
-  }
 }

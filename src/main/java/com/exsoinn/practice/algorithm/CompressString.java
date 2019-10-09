@@ -166,20 +166,4 @@ public class CompressString {
     char base = 'a';
     return Character.toLowerCase(c) - base;
   }
-
-
-  public static void main(String[] pArgs) {
-    char c = (char) 10;
-    System.out.println("char is " + c);
-    /*String str = "aAAAAAAAAafffeeagGgaaabbB";
-    CompressString cs = new CompressString();
-    System.out.println(cs.compressEarlier(str));
-
-    System.out.println("'A' is " + (int)'A');
-    System.out.println("'Z' is " + (int)'Z');
-    System.out.println("91 is " + (char)91);
-    System.out.println("'a' is " + (int)'a');
-    System.out.println("'z' is " + (int)'z');
-    System.out.println("'A' - 'a' is " + ('A' - 'a'));*/
-  }
 }
