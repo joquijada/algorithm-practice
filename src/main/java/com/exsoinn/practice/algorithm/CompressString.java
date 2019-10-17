@@ -4,9 +4,7 @@ package com.exsoinn.practice.algorithm;
 
 /**
  * <pre>
- * Problem: Write a method that will compress a string by collapsing consecutive
- * occurences into one, apending a number indicating this number. For example
- * aaabbrrddsssj becomes a3b2r2d2s3j1
+ * Problem: Compress a string by replacing same character consecutive occurrences with the character followed by the number of consecutive occurrences.
  *
  * If the string size were to stay the same or increase, return the original string
  *
@@ -49,10 +47,15 @@ public class CompressString {
     final int strLen = str.length();
     // Add one because the subtraction below "chops off" one of the alphabet characters
     final int alphabetSize ='z' - 'a' + 1;
+
+    /*
+     * Declare a matrix where the "x axis" is the position of a characterin the string, and the "y axis"
+     * is the entire alphabet, with the count of the character at that position.
+     */
     final int[][] chars = new int[strLen][alphabetSize];
 
     int idx = 0;
-    int pos = 0;
+    int pos = 0; // represents the count of unique characters
     while (idx < strLen && pos < chars.length) {
       int charOccurrenceCnt = 1;
       final char curChar = Character.toLowerCase(str.charAt(idx));
@@ -93,6 +96,41 @@ public class CompressString {
       return bldr.toString();
     }
   }
+
+
+  public String compressSimpler(String str) {
+    final int strLen = str.length();
+    int idx = 0;
+    StringBuilder sb = new StringBuilder();
+    while (idx < strLen) {
+      int charOccurrenceCnt = 1;
+      char curChar = Character.toLowerCase(str.charAt(idx));
+      sb.append(curChar);
+
+      // Helper inner while() loop to keep advancing while cur character is same as the next one,
+      // keeping track of the occurrence count of the char
+      while (idx < strLen - 1
+              && Character.toLowerCase(curChar) == Character.toLowerCase(str.charAt(idx + 1))) {
+        ++charOccurrenceCnt;
+        ++idx;
+      }
+
+      // Remember that above while() breaks out when idx comes within one position of end of str,
+      // account for that
+      ++idx;
+
+      sb.append(charOccurrenceCnt);
+
+      // Optimization: Return original string as soon as "compressed" string is equal or more
+      //   in length to original string
+      if (sb.toString().length() >= str.length()) {
+        return str;
+      }
+    }
+
+    return sb.toString();
+  }
+
 
 
   public String compressEarlier(String pStr) {

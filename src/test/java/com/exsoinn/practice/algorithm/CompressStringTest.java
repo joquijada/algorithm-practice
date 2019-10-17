@@ -24,4 +24,9 @@ public class CompressStringTest extends TestCase {
     assertEquals(str1Compressed, compressString.compressEarlier(str1));
     assertEquals(str2Compressed, compressString.compressEarlier(str2));
   }
+
+  public void testCompressSimpler() {
+    assertEquals(str1Compressed, compressString.compressSimpler(str1));
+    assertEquals(str2Compressed, compressString.compressSimpler(str2));
+  }
 }
