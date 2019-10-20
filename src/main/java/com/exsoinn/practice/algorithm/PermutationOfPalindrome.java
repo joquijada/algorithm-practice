@@ -1,13 +1,14 @@
 package com.exsoinn.practice.algorithm;
 
+import com.exsoinn.practice.algorithm.util.Util;
+
 /**
  * <pre>
- * Problem: Given a string, write a function to determine if it is a permutation of a palindrome
- *
- *
- * Date: 09/26/2019
- * Start: 09:00PM
- * End:   11:05PM (got stuck on logic to select a prefix and build the remainder string)
+ * Problem: Given a string, write a function to determine if it is a permutation of a palindrome. In
+ * other words, is it a palindrome but scrambled? Example:
+ * Input: "Tact Coa"
+ * Output: true ("taco cat", "atco cta", etc. are permutations of input string that are also
+ *   palindromes)
  *
  *
  * Questions:
@@ -75,15 +76,17 @@ package com.exsoinn.practice.algorithm;
  * @author josequijada
  */
 public class PermutationOfPalindrome {
+  private final static Palindrome palindrome = new Palindrome();
 
-  boolean isPalindromePermutationHorrendous(String str) {
-    return permutationHelper(str, "");
+  boolean isPalindromePermutationHorrendous(final String str) {
+    final String strippedStr = Util.strip(str).toUpperCase();
+    return permutationHelper(strippedStr, "");
   }
 
 
   boolean permutationHelper(String str, String prefix) {
     if (null == str || str.length() < 1) {
-      if (isPalindrome(prefix)) {
+      if (palindrome.isPalindrome(prefix)) {
         return true;
       } else {
         return false;
@@ -111,39 +114,8 @@ public class PermutationOfPalindrome {
   }
 
 
-  boolean isPalindrome(String str) {
-    String stripped = strip(str);
 
-    int left = 0;
-    int right = stripped.length() - 1;
-    // 0 1 2 3 4 (odd length)
-    // 0 1 2 4   (even length)
-    while (left < right && stripped.charAt(left) == stripped.charAt(right)) {
-      ++left;
-      --right;
-    }
 
-    return left
-            < right; // if true, it means unequal characters found before both halves were fully compared
-  }
-
-  /**
-   * Remove non-alpha characters from the input string.
-   */
-  String strip(String str) {
-    int aVal = Character.getNumericValue('a');
-    int bVal = Character.getNumericValue('b');
-    StringBuilder sb = new StringBuilder();
-    for (int i = 0; i < str.length(); i++) {
-      char c = str.charAt(i);
-      int val = Character.getNumericValue(c);
-      if (val < aVal || val > bVal) {
-        continue;
-      }
-      sb.append(c);
-    }
-    return sb.toString();
-  }
 
 
   /**
@@ -158,7 +130,7 @@ public class PermutationOfPalindrome {
    * that's all 0's, with the exception of a lone 1 in the case where the word had **at most** one
    * character where the count was odd. Example:
    *
-   * abecdeeedceba
+   * "abecdeeedceba"
    *
    * In the above, notice all characters are evenly balanced (I.e. there's an even count of each),
    * except for 'e', which appears 5 times. This means that 'e' is the only character which will
@@ -167,12 +139,13 @@ public class PermutationOfPalindrome {
    *
    * Assumptions: 1. Input string contains characters only from the English alphabet
    */
-  boolean isPalindromePermutationImproved(String str) {
+  boolean isPalindromePermutationImproved(final String str) {
     // Create the alphabet bit vector (I.e. a list of switches)
     int switches = 0;
+    final String strippedStr = Util.strip(str);
 
     // Flip the switch on/off as each character is seen
-    char[] ary = str.toCharArray();
+    char[] ary = strippedStr.toCharArray();
 
     for (int i = 0; i < ary.length; i++) {
       final char curChar = ary[i];

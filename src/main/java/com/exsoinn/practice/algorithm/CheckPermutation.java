@@ -6,12 +6,7 @@ import java.util.Optional;
 
 /**
  * <pre>
- * Problem: Given two strings, determine if one is a permutation of the other,
- *
- * Date: 09/13/2019
- * Start: 08:06PM
- * Stop:  08:17PM
- * End:
+ * Problem: Given two strings, determine if one is a permutation of the other
  *
  *
  * Questions:
@@ -25,7 +20,11 @@ import java.util.Optional;
  * - What is a permutation? Both strings contain same character set, **and** same count for each, regardless of the order in which the characters appear in either of the strings
  * - Can sort both strings and do a comparison (quick and easy, but performance-wise might not be optimal)
  * - Can store character and count of str1 in HashTable, then iterate str2 chars and decrease the count in the HashTable; anything reaches below 0, then it's not a permutation. But what about characters that remain? Need to scan Map for anything which value is not 0, to make final decision? Not really, on str2 inspection, as soon as character not found, or if found the count reaches -1, return 0
- * - Can initiate an int array to all zero's of alphabet of all possible characters, where the index in the array is the chracters number. THe array value is a counter to be incremented with each occurrence of a character in str1, and decreased per each occurrence of character in str2. If count reaches below 0 for any array entry, return false. It's important to know ahead of time the character set being used to initialize array with the correct size.
+ * - Can initiate an int array to all zero's of alphabet of all possible characters, where the
+ *   index in the array is the character's numeric value. The array value is a counter to be
+ *   incremented with each occurrence of a character in str1, and decreased per each occurrence
+ *   of character in str2. If count reaches below 0 for any array entry, return false. Must know
+ *   ahead of time the character set being used to initialize array with the correct size.
  *
  *
  *
@@ -75,8 +74,6 @@ public class CheckPermutation {
     Optional<Integer> opt = charCnt.values().stream().filter(e -> e != 0).findAny();
 
     return !opt.isPresent();
-
-
   }
 
 
