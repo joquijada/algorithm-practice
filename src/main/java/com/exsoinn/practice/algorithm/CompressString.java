@@ -14,7 +14,7 @@ package com.exsoinn.practice.algorithm;
  * 2. How long can the string potentially be? Very long? Or reasonably short?
  *
  Brainstorm:
- Example: In: bbrtttrrbbbb, Compressed: b2rt3r3b4
+ Example: In: bbrtttrrbbbb, Compressed: b2r1t3r3b4
 
  Example: In: abcd, Compressed: a1b1c1d1 (resulting string is longer!!! Return original string in those cases)
 
@@ -39,6 +39,11 @@ package com.exsoinn.practice.algorithm;
  idx:2 < strLen2? No
 
  pos:1 >= strLen-1:1
+
+ Runtime: Linear, O(N), where N is length of the input string.
+
+ Space: O(N) for the compressSimpler(), namely the StringBuilder data structure used to store the compressed string. But for the compress() algorithm, for each unique character we're storing the entire English alphabet. The number of unique characters cannot be larger than the entire string length, so N becomes the upper bound. Therefore total space needs is O(N*S), where S is the alphabet size, or 26,  i.
+
  * </pre>
  * @author josequijada
  */
@@ -115,8 +120,8 @@ public class CompressString {
         ++idx;
       }
 
-      // Remember that above while() breaks out when idx comes within one position of end of str,
-      // account for that
+      // Remember that above while() breaks out when idx comes within one position of end of str (to avoid
+      // getting IndexOutOfBoundsException), account for that
       ++idx;
 
       sb.append(charOccurrenceCnt);
