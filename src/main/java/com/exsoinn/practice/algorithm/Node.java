@@ -22,12 +22,20 @@ public class Node<T> {
     return data;
   }
 
+  public T data() {
+    return getData();
+  }
+
   public void setData(T data) {
     this.data = data;
   }
 
   public Node<T> getNext() {
     return next;
+  }
+
+  public Node<T> next() {
+    return getNext();
   }
 
   public void setNext(Node<T> next) {
