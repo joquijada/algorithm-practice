@@ -26,8 +26,8 @@ public class PartitionLinkedList {
     TreeNode<Integer> tn = new TreeNode<>(n.getData());
     addNodes(h, tn);
 
-    // Now just simply do an in-order traversal, building a linked list. Any values than X
-    // will be to the left of it, anything > than X to the right
+    // Now just simply do an in-order traversal, building a linked list. Any values less than X
+    // will be to the left of it, anything >= than X to the right
     // Note: I could have chosen to just simply use Java List<Integer>, but opted for building
     //       my own linked list from scratch for sake of practice
     return convertToLinkedList(tn, simpler);
@@ -165,6 +165,8 @@ public class PartitionLinkedList {
     // Build a new linked list node fof the currently visited tree node
     Node<Integer> newNode = new Node<>(root.getData());
 
+    // This will request into the deepest, left most node of the BST, which by consequence
+    // is the smallest, since we're dealing with a BST
     convertToLinkedListHelperSimpler(root.getLeft(), h);
 
     // If head is NULL, it means we're at left most node of tree
@@ -173,6 +175,7 @@ public class PartitionLinkedList {
     } else {
       // Else, add this tree node (root) to the end of the list
       Node<Integer> n = h.get();
+      // Need to find tail since we're not given a pointer to it, only to head
       while (null != n.getNext()) {
         n = n.getNext();
       }
