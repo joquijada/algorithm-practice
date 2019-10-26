@@ -1,6 +1,7 @@
 package com.exsoinn.practice.algorithm;
 
 import java.util.Collection;
+import java.util.LinkedList;
 
 /**
  * @author josequijada
@@ -69,6 +70,25 @@ public class Node<T> {
       ++cnt;
     }
     return head;
+  }
+
+
+  public static <U> Node<U> convertFromLinkedList(LinkedList<U> pList) {
+    Node<U> headNode = null;
+    Node<U> prevNode = null;
+    for (U n : pList) {
+      Node<U> curNode =new Node<>();
+      if (null == headNode) {
+        headNode = curNode;
+      }
+      curNode.setData(n);
+      if (null != prevNode) {
+        prevNode.setNext(curNode);
+      }
+      prevNode = curNode;
+    }
+
+    return headNode;
   }
 
   /**
