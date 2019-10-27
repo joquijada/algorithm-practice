@@ -36,9 +36,27 @@ public class AddLinkedListDigitsTest extends TestCase {
 
     LinkedList<Integer> res = addLinkedListDigits.add2(lst1, lst2);
     assertEquals("008", converToString(Node.convertFromLinkedList(res)));
-
   }
 
+
+  public void testAddForwardOrder() {
+    Integer[] nums1 = {7, 1, 6};
+    Integer[] nums2 = {8, 1, 5};
+    Node<Integer> lst1 = Node.buildList(nums1);
+    Node<Integer> lst2 = Node.buildList(nums2);
+    Node<Integer> h = addLinkedListDigits.addForwardOrder(lst1, lst2);
+    assertEquals("1531", converToString(h));
+  }
+
+
+  public void testAddForwardOrderDifferentLengthNumbers() {
+    Integer[] nums1 = {6, 1, 7};
+    Integer[] nums2 = {9, 5};
+    Node<Integer> lst1 = Node.buildList(nums1);
+    Node<Integer> lst2 = Node.buildList(nums2);
+    Node<Integer> h = addLinkedListDigits.addForwardOrder(lst1, lst2);
+    assertEquals("712", converToString(h));
+  }
 
 
 

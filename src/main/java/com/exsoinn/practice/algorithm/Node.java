@@ -27,6 +27,10 @@ public class Node<T> {
     return getData();
   }
 
+  public void data(T data) {
+    this.setData(data);
+  }
+
   public void setData(T data) {
     this.data = data;
   }
@@ -42,6 +46,12 @@ public class Node<T> {
   public void setNext(Node<T> next) {
     this.next = next;
   }
+
+  public void next(Node<T> next) {
+    this.setNext(next);
+  }
+
+
 
   public Node<T> getPrev() {
     return prev;
@@ -92,6 +102,26 @@ public class Node<T> {
   }
 
   /**
+   * Prepend "num" nodes to front of passed in linked list, using "val"
+   * as the value to pad with.
+   * @param n
+   * @param num
+   * @param val
+   * @param <U>
+   * @return
+   */
+  public static <U> Node<U> pad(Node<U> n, int num, U val) {
+    Node<U> newHead = n;
+    for (int i = 0; i < num; i++) {
+      newHead = new Node<>();
+      newHead.next(n);
+      newHead.data(val);
+      n = newHead;
+    }
+    return newHead;
+  }
+
+  /**
    * Used a wild card because this method can print any type of {@link Node} (I.e. it invokes
    * {@link Object} methods only).
    * @param head
@@ -127,6 +157,7 @@ public class Node<T> {
 
     System.out.print("]");
   }
+
 
 
   public static int size(Node<?> n) {

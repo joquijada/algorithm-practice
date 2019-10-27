@@ -90,4 +90,86 @@ public class AddLinkedListDigits {
   }
 
 
+  public Node<Integer> addForwardOrder(Node<Integer> lst1, Node<Integer> lst2) {
+    // Make lists both the same length by padding 0's in front as needed
+    // so that they are the same length
+    int size1 = Node.size(lst1);
+    int size2 = Node.size(lst2);
+    Node<Integer> toPad = size1 > size2 ? lst2 : (size1 < size2 ? lst1 : null);
+    if (null != toPad) {
+      Node<Integer> newHead = Node.pad(toPad, Math.abs(size1 - size2), 0);
+      // Figure out which head node to update
+      if (toPad == lst1) {
+        lst1 = newHead;
+      } else {
+        lst2 = newHead;
+      }
+    }
+
+    Result<Integer> r = addForwardOrderHelper(lst1, lst2);
+
+    // Don't forget to create a node for last carry amount if any
+    if (r.carry() != 0) {
+      Node<Integer> carry = new Node<>();
+      carry.data(r.carry());
+      carry.next(r.node());
+      return carry;
+    } else {
+      return r.node();
+    }
+  }
+
+
+  private Result addForwardOrderHelper(Node<Integer> lst1, Node<Integer> lst2) {
+    Result prevRes = null;
+    if (null != lst1.next() && null != lst2.next()) {
+      prevRes = addForwardOrderHelper(lst1.next(), lst2.next());
+    }
+
+    Node<Integer> prevNode = null;
+    int prevCarry = 0;
+    if (null != prevRes) {
+      prevCarry = prevRes.carry();
+      prevNode = prevRes.node();
+    }
+
+    int res = lst1.data() + lst2.data() + prevCarry;
+
+    int carry = res / 10;
+    res %= 10;
+
+    Node<Integer> n = new Node<>();
+    n.next(prevNode);
+    Result r = new Result();
+    n.data(res);
+    r.carry(carry);
+    r.node(n);
+
+    return r;
+  }
+
+
+
+  private static class Result<T> {
+
+    private Node<T> node = null;
+    private int carry = 0;
+
+    private Node<T> node() {
+      return node;
+    }
+
+    private void node(Node<T> n) {
+      node = n;
+    }
+
+    private int carry() {
+      return carry;
+    }
+
+    private void carry(int i) {
+      carry = i;
+    }
+  }
+
 }
