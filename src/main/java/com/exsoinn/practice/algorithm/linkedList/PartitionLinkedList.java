@@ -1,17 +1,21 @@
-package com.exsoinn.practice.algorithm;
+package com.exsoinn.practice.algorithm.linkedList;
 
+import com.exsoinn.practice.algorithm.Node;
+import com.exsoinn.practice.algorithm.TreeNode;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
+ * Assumptions: 1. No duplicates. Why? It's hard to decide which Node to partition around when they
+ * have same value X!!!
  *
- * Assumptions:
- * 1. No duplicates. Why? It's hard to decide which Node to partition around when they have same value X!!!
  * @author josequijada
  */
 public class PartitionLinkedList {
-  public Node<Integer> partitionAroundX(Node<Integer> h, int x, boolean simpler) {
-    if (null == h || null == h.getNext()) return null;
 
+  public Node<Integer> partitionAroundX(Node<Integer> h, int x, boolean simpler) {
+    if (null == h || null == h.getNext()) {
+      return null;
+    }
 
     // Find the node to partition around
     Node<Integer> n = findNode(h, x);
@@ -63,7 +67,6 @@ public class PartitionLinkedList {
   }
 
 
-
   private void insertTreeNode(Node<Integer> n, TreeNode<Integer> tn) {
     TreeNode<Integer> newTreeNode = new TreeNode<>(n.getData());
     while (true) {
@@ -98,25 +101,21 @@ public class PartitionLinkedList {
   }
 
 
-
   /**
-   * This method is basically doing an in-order traversal and building a list from smallest to biggest
-   * number.
-   * The Holder<Node> is passed to capture head; this is an imperative operation, meaning that the function
-   * will populate head node via side-effects
+   * This method is basically doing an in-order traversal and building a list from smallest to
+   * biggest number. The Holder<Node> is passed to capture head; this is an imperative operation,
+   * meaning that the function will populate head node via side-effects
    */
-  private Node<Integer> convertToLinkedListHelper(TreeNode<Integer> root, AtomicReference<Node<Integer>> h) {
+  private Node<Integer> convertToLinkedListHelper(TreeNode<Integer> root,
+          AtomicReference<Node<Integer>> h) {
     if (null == root) {
       return null;
     }
 
-
     // Build a new linked list node for current node
     Node<Integer> newNode = new Node<>(root.getData());
 
-
     Node<Integer> left = convertToLinkedListHelper(root.getLeft(), h);
-
 
     // Save head, which is essentially the left-most and first visited node in the tree
     if (null == h.get()) {
@@ -135,9 +134,7 @@ public class PartitionLinkedList {
       }
     }
 
-
     Node<Integer> right = convertToLinkedListHelper(root.getRight(), h);
-
 
     // When the right node returns, find the left most (beginning of partial linked list),
     // then connect it to current node. That's because anything to the right of root is >= to root
@@ -157,7 +154,8 @@ public class PartitionLinkedList {
   }
 
 
-  private void convertToLinkedListHelperSimpler(TreeNode<Integer> root, AtomicReference<Node<Integer>> h) {
+  private void convertToLinkedListHelperSimpler(TreeNode<Integer> root,
+          AtomicReference<Node<Integer>> h) {
     if (null == root) {
       return;
     }
