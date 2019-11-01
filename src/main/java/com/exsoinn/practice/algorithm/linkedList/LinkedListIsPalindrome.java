@@ -1,5 +1,6 @@
-package com.exsoinn.practice.algorithm;
+package com.exsoinn.practice.algorithm.linkedList;
 
+import com.exsoinn.practice.algorithm.Node;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;

@@ -5,6 +5,51 @@ import com.exsoinn.practice.algorithm.Node;
 import java.util.LinkedList;
 
 /**
+ * <pre>
+ *   Problem: Sum the two given linked lists, where the digits of each number are given in reverse order. Return the sum as linked list, also in reverse order.
+ *
+ * Follow Up: Repeat the problem but with digits stored in forward order.
+ *
+ * Example:
+ *   7 -> 1 -> 6 (617)
+ * + 5 -> 9 -> 2 (295)
+ * -------------
+ *   2 -> 1 -> 9 (912)
+ *
+ *
+ * Questions:
+ * 1. Are the numbers to add of varying digit lengths? Assume the answer is yes.
+ *
+ *
+ *
+ *
+ * Brainstorm:
+ * - How does basic addition of two numbers work?
+ *   * Add the digits per column from right to left
+ *   * There can be a carry over if the sum of the digits in the column is > 9
+ *   * The carry over if any must be added in the next column when calculating the sum
+ *   * The result of adding the digits per column will accomodate 0 - 9 only, if > 9, that is accounted for in the carry over portion, if any. For example 9 + 9 = 18, result is "8", carryover is "1". The sum therefore needs to be %10 to "truncate/bind" the result in this manner
+ *   * How to figure out the carry over amount?
+ *   * The two numbers to add can be of varying lengths
+ *
+ *
+ *
+ * Algorithm: Use recursion to traverse both lists from left to right, adding the two digits, keeping track of carry over if any. Must be careful if one list runs out before the other, as will be the case when the two numbers to add have different number of digits
+ *
+ *
+ * Test:
+ *
+ *
+ * Assumptions:
+ *
+ *
+ *
+ * Runtime: O(N), because have to traverse every list link to perform the sum
+ *
+ *
+ * Space: O(N), name to store each recursive call stack, which will be as deep as the longest list
+ * </pre>
+ *
  * @author josequijada
  */
 public class AddLinkedListDigits {
