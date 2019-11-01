@@ -19,8 +19,6 @@ import com.exsoinn.practice.algorithm.Node;
  *
  * Runtime: O(N), because have to traverse entire list
  *
- *
- *
  * Space: O(N), because have to recurse all the way to end of list. This can get problematic if the list is very long, as we might hit StackOverFlow error in Java.
  * </pre>
  * @author josequijada

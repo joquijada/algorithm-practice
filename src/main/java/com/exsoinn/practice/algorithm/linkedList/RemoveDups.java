@@ -62,7 +62,11 @@ public class RemoveDups {
         if (la.next().data() == cur.data()) {
           // Duplicate found, remove it from the chain
           la.setNext(la.next().next());
-          la.next().setPrev(la);
+          // Check if "la" didn't become the tail node, which will be the case
+          // when the dup found was at the tail of the list
+          if (null != la.next()) {
+            la.next().prev(la);
+          }
         } else {
           // la.next() passed the test (it's not a dup of "cur"), prepare "la"
           // pointer to look at the next link (I.e. the one that immediately follows la.next())

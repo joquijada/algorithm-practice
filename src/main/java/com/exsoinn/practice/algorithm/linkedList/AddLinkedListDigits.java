@@ -1,6 +1,7 @@
-package com.exsoinn.practice.algorithm;
+package com.exsoinn.practice.algorithm.linkedList;
 
 
+import com.exsoinn.practice.algorithm.Node;
 import java.util.LinkedList;
 
 /**

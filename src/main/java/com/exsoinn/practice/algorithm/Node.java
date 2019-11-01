@@ -1,7 +1,9 @@
 package com.exsoinn.practice.algorithm;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 /**
  * @author josequijada
@@ -57,6 +59,10 @@ public class Node<T> {
     return prev;
   }
 
+  public void prev(Node<T> prev) {
+    this.setPrev(prev);
+  }
+
   public void setPrev(Node<T> prev) {
     this.prev = prev;
   }
@@ -99,6 +105,14 @@ public class Node<T> {
     }
 
     return headNode;
+  }
+
+
+  public static String converToString(Node<Integer> n) {
+    Collection<Object> nums = new ArrayList<>();
+    Node.printList(n, nums);
+    System.out.println();
+    return nums.stream().map(e -> e.toString()).collect(Collectors.joining(""));
   }
 
   /**

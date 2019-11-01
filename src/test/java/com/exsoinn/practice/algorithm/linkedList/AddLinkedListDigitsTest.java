@@ -1,9 +1,7 @@
-package com.exsoinn.practice.algorithm;
+package com.exsoinn.practice.algorithm.linkedList;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import com.exsoinn.practice.algorithm.Node;
 import java.util.LinkedList;
-import java.util.stream.Collectors;
 import junit.framework.TestCase;
 
 /**
@@ -59,11 +57,7 @@ public class AddLinkedListDigitsTest extends TestCase {
   }
 
 
-
   public static String converToString(Node<Integer> n) {
-    Collection<Object> digits = new ArrayList<>();
-    Node.printList(n, digits);
-    System.out.println();
-    return digits.stream().map(e -> e.toString()).collect(Collectors.joining(""));
+    return Node.converToString(n);
   }
 }
