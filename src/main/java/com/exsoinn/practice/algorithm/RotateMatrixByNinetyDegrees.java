@@ -36,7 +36,7 @@ package com.exsoinn.practice.algorithm;
  *
  *    0  1  2  3
  *
- *
+ * m[layerMin][fromMinToMax]= m[fromMaxToMin][layerMin];
  *
  *
  * After:
@@ -104,8 +104,12 @@ public class RotateMatrixByNinetyDegrees {
       final int layerMax = dim - layer - 1;
       final int layerMin = layer;
       /*
-       * The rotation is done clock-wise. We rotate each element one at a time all the way around. Notice
-       * we only need 3 swaps. Why?
+       * The rotation is done clock-wise. We rotate **each element one at a time** all the way around,
+       * beginning from left row, swapping each element there with the bottom row, and so on until we
+       * work our way to the top riw. An entire row is swapped, one element at at time, on each layer
+       * iteration (the outer for() loop.
+       *
+       * Notice we only need 3 swaps. Why?
        * Because by virtue of moving the same element around the matrix 3 times, that element is already
        * effectively rotated 90 degrees. In essence those elements are moved backward to as we advance
        * each layer array behind them forward. The target of the swap (the element that is getting displaced)
@@ -114,7 +118,7 @@ public class RotateMatrixByNinetyDegrees {
        * 270 degrees backwards.
        *
        * Note: Why is the for() loop limited to less than `layerMax`? Because that element is in the corner
-       * of the, where arrays overlap/meet (they share an element in common in each corner), and
+       * of the matrix, where arrays overlap/meet (they share an element in common in each corner), and
        * that element will have already been swapped when we first
        * started swapping that array. If we were to do `<=`, we'd end up erroneously swapping the same
        * element twice.
