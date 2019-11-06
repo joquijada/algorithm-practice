@@ -1,17 +1,14 @@
-package com.exsoinn.practice.algorithm;
+package com.exsoinn.practice.algorithm.string;
 
 /**
  * <pre>
- * Problem: Determine if string is made up of unique characters only. Cannot use additional data structures.
+ * Problem: Determine if string is made up of unique characters only. What if cannot use additional data structures.
  *
  * Questions:
  * 1. Does case matter?
  * 2. Do characters come from the alphabet only (26 chars), ASCII (256 chars), or full Java chracter set of 2^16 (because char is 16 bits long, which yields approx 64K different characters)?
  * 3. How long can the string be expected to be?
  *
- * Date: 09/09/2019
- * Start: 7:18PM
- * End:
  *
  * Assumptions:
  * 1. Will assume characters can be any of Java's char 2^16 characters extended ASCII set.
@@ -19,7 +16,7 @@ package com.exsoinn.practice.algorithm;
  *
  * Algorithm:
  * 1. Scan one character at a time, from left to right.
- * 2. Have I seen that chracter? Check my memory. If yes, return false right away, else continue to next step.
+ * 2. Have I seen that character? Check my memory. If yes, return false right away, else continue to next step.
  * 3. Memorize the character just seen, and start from the top.
  *
  *
@@ -32,17 +29,25 @@ package com.exsoinn.practice.algorithm;
 public class AllUniqueCharacters {
   /**
    * I do use an additional data structure, namely a bit vector to use as my "alphabet" of
-   * 2^16 extended ASCII characters to track seen character count. W/o additional data structure allowed,
-   * I'd have to resort to an O(N^2) algorithm. The trade of is less space but at the expense for more CPU
+   * 2^16 extended ASCII characters to track seen character count.
+   *
+   * W/o additional data structure allowed,
+   * I'd have to resort to an O(N^2) algorithm. The trade off is less space consumed but at the expense for more CPU
    * and and longer computational time perhaps? Which is better? This approach will use 2^13 bytes, which is
    * roughly 8K's of memory, which is a fraction of a 4Gig RAM machine for example
    * Improvement: Refactor logic that deals with finding character's position in
    *       char vector into its own helper method(s)
+   *  Question: How did I come up with the 2^13 bytes usage? Ans: See farther below, search for
+   *    "I need enough space to potentially store all 2^16 characters"
+   *
+   *  The bit vector is actually an array of "bytes" (remember each byte is 8 or 2^3 bits). Why an array
+   *  of bytes and not an array of say integers? In this case would not have made difference, as both
+   *  (2^3/byte and 2^5/integer) divide equally into 2^16, since both are factors of 2^16.
    */
   boolean allUniqueCharacters(String str) {
     /*
      * Captures the maximum number of characters possible (2^16). Need an int to capture this,
-     * because remember 0 is a number too. If I were to use a short, which accomodates
+     * because remember 0 is a number too. If I were to use a short, which accommodates
      * 2^16, then I'd get overflow, because the largest positively signed integer a short can
      * hold is number 2^16-1, which is one less than the total number of characters (2^16). The minute
      * I add one to it, because of Java modular
@@ -60,9 +65,10 @@ public class AllUniqueCharacters {
 
     /*
      * I need enough space to potentially store all 2^16 characters (in case
-     * I'm given a string that's 2^16 chracters long). That means I need to be able to store
+     * I'm given a string that's 2^16 characters long). That means I need to be able to store
      * 64000 (64K) bits). If one byte is 8 bits long, how many bytes do I need to store
      * 64000 bits? Divide 2^16/2^3 = 2^13 bytes needed.
+     * Since
      */
     final short numBytes = maxChars/Byte.SIZE;
     final byte[] charVector = new byte[numBytes];
@@ -73,8 +79,8 @@ public class AllUniqueCharacters {
       /*
        * Find the byte in the array of bytes that this character belongs to. Why do we divide the char
        * numeric value by 8 (Byte.SIZE)? Because we want to see how many bytes fit into that number,
-       * since that will tell use the the position/location in the byte array defined above in
-       * which this character belongs.
+       * since that will tell us the byte in the byte array that this character belongs. Since this is
+       * integer division, the remainder if any (I.e. the decimal) gets dropped.
        */
       final int charNumVal = (int) c;
       short byteIdx = (short) (charNumVal/Byte.SIZE);
@@ -95,7 +101,11 @@ public class AllUniqueCharacters {
 
       // Character being seen for first time, remember it for future comparison
       charByte |= mask;
-      charVector[byteIdx] = charByte; // Store it back, remember it's a primitive, not an object reference!
+
+      /*
+       * Need to explicitly store it back, remember it's a primitive, not an object reference!
+       */
+      charVector[byteIdx] = charByte;
     }
 
     // All characters in string exhausted and not duplicate found,

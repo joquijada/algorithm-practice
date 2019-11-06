@@ -1,4 +1,4 @@
-package com.exsoinn.practice.algorithm;
+package com.exsoinn.practice.algorithm.string;
 
 import junit.framework.TestCase;
 
