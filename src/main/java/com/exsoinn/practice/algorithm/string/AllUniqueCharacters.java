@@ -20,9 +20,19 @@ package com.exsoinn.practice.algorithm.string;
  * 3. Memorize the character just seen, and start from the top.
  *
  *
- * Runtime: O(N), where N is the total size of the string. But if we know that the character set size is 2^16 characters, and that at most I'll iterate through 2^16 chracters of any string, regardless of size, then might as well call it O(1). Why? Because as per the pigeon hole principle, in a string that contains characters from a set size C, the longest string I can possibly have with all unique characters is C in length, and also because the algorithm below will exit at such first repeated chracter found, which will happen at worst when the 2^16 character of the input string is seen. Or to be more precise, can call it O(min(C, N)), whichever is shorter between the string length N and character set size C.
+ * Runtime: O(N), where N is the total size of the string. But if we know that the character set size
+ * is 2^16 characters, and that at most I'll iterate through 2^16 characters of any string, regardless
+ * of size, then might as well call it O(1). Why? Because as per the pigeon hole principle,
+ * in a string that contains characters from a set of fixed size C, the longest string I can possibly
+ * have with all unique characters is C in length, and also because the algorithm below will exit at such
+ * first repeated character found, which will happen at worst when the 2^16 character of the input string
+ * is seen. Or to be more precise, can call it O(min(C, N)), whichever is shorter between the string
+ * length N and character set size C.
  *
- * Space: O(1), because it stays constant in relation to input N string length. The constant storage/memory usage will always be 2^16 for this particular program, namely the alphabet bit vector we use to keep track of seen character count. The alphabet size is determined by whatever the interviewer says.
+ * Space: O(1), because it stays constant in relation to input N string length. The constant
+ * storage/memory usage will always be 2^16 for this particular program, namely the alphabet bit vector
+ * we use to keep track of seen character count. The alphabet size is determined by whatever the
+ * interviewer says.
  * </pre>
  * @author josequijada
  */
