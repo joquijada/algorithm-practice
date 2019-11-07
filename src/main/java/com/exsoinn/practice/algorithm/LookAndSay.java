@@ -1,6 +1,7 @@
 package com.exsoinn.practice.algorithm;
 
 /**
+ * <pre>
  * Problem: Implement a function that outputs the Look and Say sequence:
  *
  * 1
@@ -28,10 +29,14 @@ package com.exsoinn.practice.algorithm;
  *
  *
  *
- * Runtime:
+ * Runtime: We have quasi the classic sum of a series 1 + 2 + 3 + 4 + ... + N . Each recursive call, when it unwinds, does, roughly speaking, one more than the previous.
+ * If N is even, we will have N/2 pairs, if N is odd we have (N+1)/2 pairs. In the former, each pair adds up to N + 1, in the latter each pair adds up to N. So we have a total of N(N+1)/2 and (N+1)N/2 respectively, which reduces to O(N^2).
  *
  *
- * Space: O(N) - Number of call stacks, which is equal to the requested number of sequences@author josequijada
+ * Space: O(N) - Number of call stacks, which is equal to the requested number of sequences
+ * </pre>
+ * @author josequijada
+ *
  */
 public class LookAndSay {
 
