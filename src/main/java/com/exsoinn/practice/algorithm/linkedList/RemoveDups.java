@@ -24,12 +24,12 @@ import com.exsoinn.practice.algorithm.Node;
  *
  * (5 - 1) + (5 - 2) + (5 - 3) + (5 - 4)
  *
- * The sum looks like this: 4 + 3 + 2 + 1
+ * The sum looks like this: 4 + 3 + 2 + 1 (notice that the max number in the sum is one less than the input size)
  *
  * 4 + 1 = 5
  * 3 + 2 = 5
  *
- * There are two pairs in the sum, that each sums to N (5). Notice the number of pairs is (5 - 1)/2. The total number of iterations of inner while() loop can thus be expressed as:
+ * There are two pairs in the sum, that each add up to N (5). Notice the number of pairs is (5 - 1)/2. The total number of iterations of inner while() loop can thus be expressed as:
  *
  * (5 - 1)/2 * 5, or (N - 1)*N/2, which is O(N^2), because that's the tightest bound we can have (dividing a power of 2 in half doesn't do much to decrease time complexity as far as big-O is concerned).
  *
