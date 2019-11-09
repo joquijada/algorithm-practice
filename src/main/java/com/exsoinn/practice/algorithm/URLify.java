@@ -106,7 +106,7 @@ public class URLify {
 
     /*
      * Calculate how by how many spaces to the right the string will grow
-     * due to the encryption of the space characters.
+     * due to the escaping of the space characters.
      */
     final int spaceCnt = countSpaces(str, len);
 
@@ -114,6 +114,15 @@ public class URLify {
     // and add that to current length
     final int totalLen = (spaceCnt * 2) + len;
     int back = totalLen - 1;
+
+    // If there are extra spaces beyond the length of the URLified string, add
+    // a NULL character to signify that spaces beyond are not escaped
+    if (ary.length > totalLen) {
+      ary[totalLen] = '\0';
+    }
+
+    // Start from back (right) side of array, expanding (I.e. escaping)
+    // space characters
     for (int i = len - 1; i >= 0; i--) {
       if (ary[i] == ' ') {
         ary[back] = '0';
