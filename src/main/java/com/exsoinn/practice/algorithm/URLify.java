@@ -1,18 +1,11 @@
 package com.exsoinn.practice.algorithm;
 
-import java.util.Arrays;
-
 /**
  * <pre>
  * Problem: Write a method to URL-encode spaces in a sring. The URL encoding for a space is '%20'. Must do this operation in place, meaning have to use the same array for it
  *
- * Date: 09/25/2019
- * Start: 07:30PM
- * End:   08:03PM
  *
  * Questions:
- *
- *
  *
  *
  * Brainstorm:
@@ -74,19 +67,18 @@ public class URLify {
     final char[] ary = str.toCharArray();
 
     /*
-     * Make room in front of array to accomodate the expanded spaces.
+     * Make room in front of array to accommodate the expanded spaces.
      * Note: I didn't have to move the string to back of array. I could have just started
-     *       copying each character to the back of array right away, exapanding as
+     *       copying each character to the back of array right away, expanding as
      *       I go along. See the other version where I make this improvement.
      */
     final int spaceCnt = countSpaces(str, len);
-    final int totalLen = (spaceCnt*2) + len;
+    final int totalLen = (spaceCnt * 2) + len;
     int back = totalLen - 1;
     for (int i = len - 1; i >= 0; i--) {
       ary[back] = ary[i];
       --back;
     }
-
 
     // Now copy the string back to the front, expanding each space as I go along
 
@@ -109,16 +101,18 @@ public class URLify {
   }
 
 
-
   String urlifyImproved(String str, final int len) {
     final char[] ary = str.toCharArray();
 
     /*
-     * Calculate how far to the right in the array I have to start moving string from right to left (from
-     * back to front) in order to have enough space to accomodate the expanded spaces.
+     * Calculate how by how many spaces to the right the string will grow
+     * due to the encryption of the space characters.
      */
     final int spaceCnt = countSpaces(str, len);
-    final int totalLen = (spaceCnt*2) + len;
+
+    // Since each space will grow by two, multiply each space by two
+    // and add that to current length
+    final int totalLen = (spaceCnt * 2) + len;
     int back = totalLen - 1;
     for (int i = len - 1; i >= 0; i--) {
       if (ary[i] == ' ') {
@@ -136,10 +130,11 @@ public class URLify {
 
 
   /**
-   * Why does this method need the length to traverse to? Why can't it just use the length
-   * of the input string? Because remember, the problem statement indicates that string will have
-   * extra spaces at the back so that the expanded string fits. If we didn't limit the space count
-   * to the string real legnth, we'd be erroneously counting the extra spaces provided!!!
+   * Why does this method need the length to traverse to? Why can't it just use the length of the
+   * input string? Because remember, the problem statement indicates that string will have extra
+   * spaces at the back so that the expanded string fits. If we didn't limit the space count to the
+   * string real length, we'd be erroneously counting the extra spaces provided!!!
+   *
    * @param str
    * @param len
    * @return
