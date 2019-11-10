@@ -3,6 +3,7 @@ package com.exsoinn.practice.algorithm;
 import junit.framework.TestCase;
 
 /**
+ *
  * @author josequijada
  */
 public class URLifyTest extends TestCase {
