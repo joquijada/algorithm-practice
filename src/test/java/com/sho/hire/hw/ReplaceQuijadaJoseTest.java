@@ -66,4 +66,17 @@ public class ReplaceQuijadaJoseTest extends TestCase {
       "shorter", "search string"));
   }
 
+
+  public void testSearchCaseSensitivityNohit() {
+    assertEquals("No replacement took place", replaceQuijadaJose.ecalpeResrever(
+      "place took replacement No",
+      "Replacement", "whatever"));
+  }
+
+  public void testSearchCaseSensitivityWithHit() {
+    assertEquals("A Replacement did take place", replaceQuijadaJose.ecalpeResrever(
+      "place take did replacement A",
+      "replacement", "Replacement"));
+  }
+
 }

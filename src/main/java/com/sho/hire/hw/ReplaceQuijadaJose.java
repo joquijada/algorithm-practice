@@ -27,7 +27,7 @@ public class ReplaceQuijadaJose {
 
 
   /**
-   *  Replaces all occurrences of "search" with "replacement". If any of the arguments is NULl or
+   *  Replaces all occurrences of "search" with "replacement". If any of the arguments is <code>null</code> or
    *  empty, the passed in "str" is silently returned as is!
    * @param str The target string
    * @param search What to search for
@@ -152,5 +152,13 @@ public class ReplaceQuijadaJose {
     return sb.toString();
   }
 
+  public static void main(String[] args) {
+    ReplaceQuijadaJose replaceQuijadaJose = new ReplaceQuijadaJose();
+    if (null == args || args.length != 3) {
+      System.err.println("Usage: java -cp . com.sho.hire.hw.ReplaceQuijadaJose \"<haystack/sentence>\" \"<needle/search>\" \"<replacement>\"");
+      System.exit(1);
+    }
+    System.out.println(replaceQuijadaJose.ecalpeResrever(args[0], args[1], args[2]));
+  }
 
 }
