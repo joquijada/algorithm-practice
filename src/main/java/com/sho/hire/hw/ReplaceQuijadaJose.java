@@ -27,15 +27,18 @@ public class ReplaceQuijadaJose {
 
 
   /**
-   *  Replaces all occurrences of "search" with "replacement". If any of the arguments is <code>null</code> or
-   *  empty, the passed in "str" is silently returned as is!
+   *  <pre>
+   *  Replaces all occurrences of "search" with "replacement". If any of the arguments is NULL or
+   *  empty, the passed in "str" is silently returned as is! The exception is that "replacement" can just be an empty string
+   *  (""), which will then cause all occurrences of "search" to be replaced with an empty string.
+   *  </pre>
    * @param str The target string
    * @param search What to search for
    * @param replacement Use this to replace each occurrence of "search"
    * @return String with replacements made
    */
   private String replace(final String str, final String search, final String replacement) {
-    if (isEmpty(str) || isEmpty(search) || isEmpty(replacement)) {
+    if (isEmpty(str) || isEmpty(search) || null == replacement) {
       return str;
     }
 
@@ -52,7 +55,7 @@ public class ReplaceQuijadaJose {
       // the next "search.length()" characters of "search" and "str"
       int la = i;
       int cnt = 0;
-      while (cnt < searchLen) {
+      while (la < str.length() && cnt < searchLen) {
         if (str.charAt(la) != search.charAt(cnt)) {
           break;
         }
@@ -85,9 +88,16 @@ public class ReplaceQuijadaJose {
 
 
   /**
-   * This method reverses the words in the passed in sentence. Description of algorithm utilized:
+   * <pre>
+   * This method reverses the words in the passed in sentence.
+   *
+   * Description of algorithm utilized:
    * Scan "haystack" right to left, appending each word to the end of a StringBuilder initialized to
    * an empty string. This has the effect of reversing the words contained in in the passed in "sentence".
+   *
+   * Runtime: O(N), where N is the number of characters in the input string
+   *
+   * </pre>
    * @param sentence The sentence which words to reverse
    * @return Sentence with words reversed
    */

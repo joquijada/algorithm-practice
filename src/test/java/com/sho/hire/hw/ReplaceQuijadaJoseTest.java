@@ -79,4 +79,22 @@ public class ReplaceQuijadaJoseTest extends TestCase {
       "replacement", "Replacement"));
   }
 
+  /**
+   * When the search string partially matches the last word of the sentence, to test IndexOutOfBoundsException
+   * is not thrown
+   */
+  public void testPartialMatchAtEndOfSentence() {
+    assertEquals("blah great Is This", replaceQuijadaJose.ecalpeResrever("This blah blah Is blah  great blah", "blah ", ""));
+  }
+
+
+  public void testReplacementWithNothing() {
+    assertEquals("h great h Is h h This", replaceQuijadaJose.ecalpeResrever("This blah blah Is blah  great blah", "bla", ""));
+  }
+
+
+  public void testBlanksRemoved() {
+    assertEquals("Todayisawonderfulday", replaceQuijadaJose.ecalpeResrever("Today is a wonderful day", " ", ""));
+  }
+
 }
