@@ -91,7 +91,7 @@ public class ReplaceQuijadaJose {
    * <pre>
    * This method reverses the words in the passed in sentence.
    *
-   * Description of algorithm utilized:
+   * Algorithm:
    * Scan "haystack" right to left, appending each word to the end of a StringBuilder initialized to
    * an empty string. This has the effect of reversing the words contained in in the passed in "sentence".
    *
