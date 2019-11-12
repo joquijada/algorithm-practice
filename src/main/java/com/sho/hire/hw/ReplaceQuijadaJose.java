@@ -31,6 +31,13 @@ public class ReplaceQuijadaJose {
    *  Replaces all occurrences of "search" with "replacement". If any of the arguments is NULL or
    *  empty, the passed in "str" is silently returned as is! The exception is that "replacement" can just be an empty string
    *  (""), which will then cause all occurrences of "search" to be replaced with an empty string.
+   *
+   *  Algorithm:
+   *  At each character of input "str", scan the next window of X characters, inclusive against the X characters of
+   *  "search". If all characters in both sequences match, advance the next character right after the just matched sequence, use the
+   *  "replacement" as the string to append next into the return string, and
+   *  repeat the process. If the sequences did not match, just append current character of "str" to the return string, and move on to next
+   *  character.
    *  </pre>
    * @param str The target string
    * @param search What to search for
@@ -46,8 +53,9 @@ public class ReplaceQuijadaJose {
     final StringBuilder sb = new StringBuilder();
 
     final int searchLen = search.length();
+    final int strLen = str.length();
     int i = 0;
-    while (i < str.length()) {
+    while (i < strLen) {
       // Check if the next sequence of characters matches "search", and if so,
       // append "replacement" to the StringBuilder; else just add the current character and move
       // on to next character.
@@ -55,12 +63,19 @@ public class ReplaceQuijadaJose {
       // the next "search.length()" characters of "search" and "str"
       int la = i;
       int cnt = 0;
-      while (la < str.length() && cnt < searchLen) {
-        if (str.charAt(la) != search.charAt(cnt)) {
-          break;
+
+      /*
+       * Is there even enough "runway" left in the input string against
+       * which to compare the search string? If not don't even bother
+       */
+      if (searchLen <= (strLen - i)) {
+        while (la < strLen && cnt < searchLen) {
+          if (str.charAt(la) != search.charAt(cnt)) {
+            break;
+          }
+          ++cnt;
+          ++la;
         }
-        ++cnt;
-        ++la;
       }
 
       // A needle in the haystack found!?!?!? Replace it...
@@ -74,6 +89,7 @@ public class ReplaceQuijadaJose {
         // A needle not found this time around :-(, append this character and advance
         // to the next, and continue our search for a "needle"
         sb.append(str.charAt(i));
+
         ++i;
       }
     }
@@ -155,7 +171,7 @@ public class ReplaceQuijadaJose {
     /*
      * Check if we have added one space too many. This will happen when the input string has leading space, for example "   my sentence"
      */
-    if (sb.charAt(sb.length() - 1) == ' ') {
+    if (sb.length() > 0 && sb.charAt(sb.length() - 1) == ' ') {
       sb.deleteCharAt(sb.length() - 1);
     }
 
