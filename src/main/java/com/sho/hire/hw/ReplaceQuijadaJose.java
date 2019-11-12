@@ -14,10 +14,15 @@ public class ReplaceQuijadaJose {
   /**
    *  In <strong>case sensitive manner</strong> replaces all occurrences of "needle" in "haystack", and then reverses the words, before finally
    *  returning the modified string.
+   *  <br/><br/>
+   *  <strong>Note: If the input haystack/sentence contains excess spaces, either leading/trailing or in-between words, those will get trimmed. An example can help better
+   *  illustrate:</strong><br/><br/>
+   *  In:  "   I    am     Sam   "<br/>
+   *  Out: "Sam am I"
    * @param haystack the sentence to operate on
    * @param needle the sub-string to search in the haystack
    * @param replacement the sub-string that will replace all occurrences of "needle", if any found
-   * @return Haystack with words reversed and any replacements made
+   * @return Haystack with search/ replacements made if any, and words reversed
    */
   public String ecalpeResrever(final String haystack, final String needle, final String replacement) {
     String newHaystack = replace(haystack, needle, replacement);
