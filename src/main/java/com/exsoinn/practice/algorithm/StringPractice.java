@@ -68,7 +68,7 @@ public class StringPractice {
     testCharacterApi();
 
     String same = new String("same");
-    System.out.println("'same' == 'same'? " + (same.intern() == "same".intern()));
+    System.out.println("'same' == 'same'? " + ("same" == "same".intern()));
   }
 
 }
