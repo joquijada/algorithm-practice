@@ -66,6 +66,9 @@ public class StringPractice {
     subString("abc", 0, 0);
 
     testCharacterApi();
+
+    String same = new String("same");
+    System.out.println("'same' == 'same'? " + (same.intern() == "same".intern()));
   }
 
 }
