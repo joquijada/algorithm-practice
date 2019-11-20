@@ -1,11 +1,11 @@
-package com.exsoinn.practice.algorithm;
+package com.exsoinn.practice.algorithm.binary;
 
 /**
  * @author josequijada
  */
 public class ConvertRealNumberToBinary {
 
-  private static String convertToBinarySuccint(double d) {
+  public static String convertToBinarySuccint(double d) {
     if (d > 1) {
       return "Gt than 1, not sure what to do";
     }
@@ -14,7 +14,11 @@ public class ConvertRealNumberToBinary {
       return "1";
     }
 
-    String out = "0.";
+    if (d == 0) {
+      return "0";
+    }
+
+    String out = "";
     int cnt = 1;
     while (d > 0) {
       if (cnt > 32) {
@@ -29,7 +33,7 @@ public class ConvertRealNumberToBinary {
   }
 
 
-  private static String convertToBinary(double d) {
+  public static String convertToBinary(double d) {
     if (d > 1) {
       return "";
     } else if (d == 1) {
@@ -67,14 +71,25 @@ public class ConvertRealNumberToBinary {
   }
 
 
-  public static void main(String[] args) {
-    //double[] ary = {.72, 1.54, 0.39, .586903748506693739563748593750583949596};
-    double[] ary = {.72, .625, 1, 0, 1.1};
-    for (double d : ary) {
-      System.out.println("Number " + d + " as binary is: " + convertToBinary(d));
-      System.out.println("");
-      System.out.println("Number " + d + " as binary is (succint): " + convertToBinarySuccint(d));
-      System.out.println("");
+  public static String convertToBinaryAlt(double d) {
+    if (d == 0) {
+      return "0";
     }
+    StringBuilder res = new StringBuilder("");
+    int cnt = 1;
+    while (d > 0.0D) {
+      if (cnt > 32) {
+        return "ERROR";
+      }
+      d *= 2;
+      String next = "0";
+      if (d >= 1) {
+        next = "1";
+      }
+      res.append(next);
+      d %= 1;
+      ++cnt;
+    }
+    return res.toString();
   }
 }
