@@ -30,7 +30,7 @@ public class MergeTwoSortedArrays {
       // Do same as above, but for elements at the back of "a". If "b" has been exhausted and "a" hasn't,
       // simply "copy" remaining "a" into "a". This is just overwriting with the same values from "a"
       // whatever is towards the front. We're just basically interested in making sure "right" reaches
-      // "> 0" value, which is the ending contion for enclosing outer while() loop. W/o this will end up
+      // "> 0" value, which is the ending condition for enclosing outer while() loop. W/o this will end up
       // in infinite looping!!!
       while ((idxB >= 0 && idxA >= 0 && a[idxA] >= b[idxB]) || (idxA >= 0 && idxB < 0)) {
         a[right] = a[idxA];
