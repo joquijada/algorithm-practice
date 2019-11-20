@@ -29,9 +29,11 @@ package com.exsoinn.practice.algorithm;
  *
  *
  *
- * Runtime: We have quasi the classic sum of a series 1 + 2 + 3 + 4 + ... + N . Each recursive call, when it unwinds, does, roughly speaking, one more than the previous.
- * If N is even, we will have N/2 pairs, if N is odd we have (N+1)/2 pairs. In the former, each pair adds up to N + 1, in the latter each pair adds up to N. So we have a total of N(N+1)/2 and (N+1)N/2 respectively, which reduces to O(N^2).
+ * Runtime: We have quasi the classic sum of a series 1 + 2 + 3 + 4 + ... + N . Each recursive call, when it unwinds, does, roughly speaking, one more than the previous, namely printing each character of what was "looked" in order to say it.
  *
+ * If N is even, we will have N/2 pairs, if N is odd we have (N+1)/2 pairs. In the former, each pair adds up to N + 1, in the latter each pair adds up to N. So we
+ * have a total of N(N+1)/2 and (N+1)N/2 respectively, which reduces to O(N^2). I gleaned this info by looking at the output, which more or less looks like
+ * a pyramid, where the stack underneath is roughly one more in size that the one on top.
  *
  * Space: O(N) - Number of call stacks, which is equal to the requested number of sequences
  * </pre>
@@ -49,6 +51,11 @@ public class LookAndSay {
       return "0";
     }
 
+    /*
+     * When n == 1, thew recursive call returns "0" right away, which say() has been programmed to "say"
+     * "1" - this is how we satisfy the correct "said" value at each level 1, 2, 3, 4, for level one
+     * effectively produced "1", and on from there.
+     */
     String said = say(lookAndSayHelper(n - 1));
     System.out.println(said);
     return said;
