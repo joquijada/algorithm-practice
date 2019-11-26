@@ -117,8 +117,10 @@ public class AddLinkedListDigits {
 
     int res = dig1 + dig2 + carry;
 
-    carry = res > 9 ? res / 10
-            : 0; // Calculate "carry" before we mutate "res" below, else "carry" will be wrong!!!
+
+    // Calculate "carry" before we mutate "res" below, else "carry" will be wrong!!!
+    carry = res / 10;
+
     res = res % 10; // Example (9+1=10)%10 = 0;
 
     newList.add(res);
