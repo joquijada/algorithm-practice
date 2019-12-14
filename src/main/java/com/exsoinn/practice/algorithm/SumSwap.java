@@ -76,11 +76,11 @@ public class SumSwap {
         int[] ret = new int[2];
         ret[0] = curA;
         ret[1] = curB;
-        return new int[0];
+        return ret;
       }
     }
 
-    return null;
+    return new int[0];
   }
 
   private int sum(int[] ary) {
