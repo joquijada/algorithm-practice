@@ -46,6 +46,13 @@ public class SumSwap {
   public int[] sumSwap(int[] a, int[] b) {
     final int sumA = sum(a);
     final int sumB = sum(b);
+    if (sumA == sumB) {
+      return null;
+    }
+
+    if ((sumB%2 == 0 && sumA%2 != 0) || (sumA%2 == 0 && sumB%2 != 0)) {
+      return null;
+    }
     final int sumDiff = (sumA - sumB)/2;
     int idxA = 0;
     int idxB = 0;
