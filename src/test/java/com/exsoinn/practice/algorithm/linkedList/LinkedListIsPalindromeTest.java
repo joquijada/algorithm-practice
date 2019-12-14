@@ -7,4 +7,7 @@ import junit.framework.TestCase;
  */
 public class LinkedListIsPalindromeTest extends TestCase {
 
+  public void testName() {
+    assertTrue(true);
+  }
 }
