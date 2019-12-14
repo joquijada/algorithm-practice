@@ -25,6 +25,12 @@ public class SumSwapTest extends TestCase {
     int[] b = {2, 4, 6, 8, 10};
     int[] res = sumSwap.sumSwap(a, b);
     assertEquals(0, res.length);
+
+
+    int[] c = {2, 4, 6, 8, 10};
+    int[] d  = {1, 1, 5, 5, 6, 7};
+    res = sumSwap.sumSwap(c, d);
+    assertEquals(0, res.length);
   }
 
   public void testSumSwapAlreadyEqual() {
