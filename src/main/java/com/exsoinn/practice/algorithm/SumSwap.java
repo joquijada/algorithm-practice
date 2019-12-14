@@ -76,7 +76,7 @@ public class SumSwap {
         int[] ret = new int[2];
         ret[0] = curA;
         ret[1] = curB;
-        return ret;
+        return new int[0];
       }
     }
 

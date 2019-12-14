@@ -17,20 +17,20 @@ public class SumSwapTest extends TestCase {
     int[] a = {1, 4, 5, 5, 6, 7, 8, 10, 1000};
     int[] b = {2, 4, 6, 8, 10};
     int[] res = sumSwap.sumSwap(a, b);
-    assertEquals(null, res);
+    assertEquals(0, res.length);
   }
 
   public void testSumSwapEvenOdd() {
     int[] a = {1, 1, 5, 5, 6, 7};
     int[] b = {2, 4, 6, 8, 10};
     int[] res = sumSwap.sumSwap(a, b);
-    assertEquals(null, res);
+    assertEquals(0, res.length);
   }
 
   public void testSumSwapAlreadyEqual() {
     int[] a = {2, 4, 6, 8, 10};
     int[] b = {2, 4, 6, 8, 10};
     int[] res = sumSwap.sumSwap(a, b);
-    assertEquals(null, res);
+    assertEquals(0, res.length);
   }
 }
