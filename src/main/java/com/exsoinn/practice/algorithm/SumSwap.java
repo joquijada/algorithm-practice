@@ -47,11 +47,11 @@ public class SumSwap {
     final int sumA = sum(a);
     final int sumB = sum(b);
     if (sumA == sumB) {
-      return null;
+      return new int[0];
     }
 
     if ((sumB%2 == 0 && sumA%2 != 0) || (sumA%2 == 0 && sumB%2 != 0)) {
-      return null;
+      return new int[0];
     }
     final int sumDiff = (sumA - sumB)/2;
     int idxA = 0;
