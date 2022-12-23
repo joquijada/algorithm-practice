@@ -14,7 +14,7 @@ jdk:
 
 stages:
   - test
-  #- report
+  - report
 
 
 addons:
@@ -41,8 +41,8 @@ jobs:
       # This stage runs for all branches
       name: Test the Code
       script: mvn clean install -P coverage sonar:sonar
-      #- stage: report
+    - stage: report
       ## Report only on the master branch
-      #name: Report Code Quality
-      #script: mvn sonar:sonar
-      #if: branch = master
+      name: Report Code Quality
+      script: mvn sonar:sonar
+      if: branch = master
