@@ -5,11 +5,11 @@ import java.util.Scanner;
 
 public class FindMissingInt {
   public long findMissingInt(String fileName) throws FileNotFoundException {
-    byte pageSize = Byte.SIZE; // pageSize aka pageSize
-    // long totalInts = (Integer.MAX_VALUE+1L)*2;
+    byte pageSize = Byte.SIZE; // pageSize
+    long totalInts = (Integer.MAX_VALUE+1L)*2;
     // If the total number of ints is NOT a power of two, then need to allocate
     // an extra page to accommodate the remainder
-    long totalInts = (long)Math.pow(2, 4);
+    // long totalInts = (long)Math.pow(2, 4);
     long totalPages = totalInts/pageSize;
     byte[] vector = new byte[(int)totalPages];
 
