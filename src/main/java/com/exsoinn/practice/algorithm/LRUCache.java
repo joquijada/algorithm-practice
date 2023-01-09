@@ -19,19 +19,37 @@ public class LRUCache<K, V> {
       return;
     }
 
+    // Remove before inserting. Why? We end up inserting duplicates into linked list otherwise!!! Also,
+    //        we mistakenly report cache full, which results in unfair eviction.
+    // But why bother re-inserting if it's already there? The user could be overwriting the value.
+    removeKeyIfAlreadyPresent(key);
+
     if (cache.size() >= MAX_SIZE) {
       // Evict LRU node
-      cache.remove(tail.key);
+      cache.remove(tail.key); // use tail.key to remove from cache map first, because tail ref will get updated by next line
       removeFromList(tail);
     }
     Node<K, V> n = new Node<>(key, value);
     cache.put(key, n);
     addToHeadOfList(n);
+  }
 
+  private void removeKeyIfAlreadyPresent(K key) {
+    Node<K, V> found = cache.get(key);
+    if (found == null) {
+      return;
+    }
+
+    removeFromList(found);
+    cache.remove(key);
+  }
+
+  public int size() {
+    return cache.size();
   }
 
   public V retrieve(K key) {
-    Node<K, V> found = null;
+    Node<K, V> found;
     if ((found = cache.get(key)) == null) {
       return null;
     } else {
@@ -54,28 +72,34 @@ public class LRUCache<K, V> {
       n.next = head;
       head.prev = n;
       head = n;
+      head.prev = null;
     }
   }
 
   private void removeFromList(Node<K, V> n) {
-    // Note: Will never be invoked when head == n because of calling code check
     if (head == tail) {
       // one node only (cache size is 1)
       // null <- x -> null
       head = null;
       tail = null;
-    } else if (tail == n) {
-      // node to remove is at tail of list
-      // y <-> x -> null
-      tail.prev.next = null;
-      tail = n.prev;
-      n.prev = null;
-    } else {
-      // node somewhere in between tail and head
-      // y <-> x <-> z -> null
-      n.prev.next = n.next;
+      return;
+    }
+
+    // "Unlink" this node, being careful to check if head or tail node,
+    // to prevent NPE
+    if (n.next != null) {
       n.next.prev = n.prev;
-      n.prev = null;
+    }
+    if (n.prev != null) {
+      n.prev.next = n.next;
+    }
+
+    // Finally update head or tail as appropriate
+    if (head == n) {
+      head = head.next;
+    }
+    if (tail == n) {
+      tail = tail.prev;
     }
   }
 
