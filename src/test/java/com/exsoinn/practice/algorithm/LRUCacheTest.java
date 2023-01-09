@@ -24,5 +24,17 @@ public class LRUCacheTest extends TestCase {
     cache.insert(2, "second");
     cache.insert(3, "third");
     assertEquals(cache.retrieve(3), "third");
+    assertNull(cache.retrieve(1));
+    assertNull(cache.retrieve(2));
+  }
+
+  public void testInsertSameValueAgain() {
+    LRUCache<Integer, String> cache = new LRUCache<>(3);
+    cache.insert(1, "first");
+    cache.insert(3, "third");
+    cache.insert(2, "second");
+    cache.insert(2, "second");
+    assertEquals(cache.retrieve(1), "first");
+    assertEquals(cache.size(), 3);
   }
 }
