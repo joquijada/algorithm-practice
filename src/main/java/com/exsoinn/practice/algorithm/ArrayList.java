@@ -9,12 +9,19 @@ public class ArrayList<E> {
   private Object[] ary = new Object[1];
   int numElements = 0;
 
-  public void add(E element) {
+  /**
+   * Appends element to end of list. Returns this list object,
+   * useful for chaining.
+   * @param element
+   * @return
+   */
+  public ArrayList<E> add(E element) {
     if (numElements >= ary.length) {
       resize();
     }
 
     ary[numElements++] = element;
+    return this;
   }
 
   /**
