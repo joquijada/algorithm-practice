@@ -92,12 +92,40 @@ package com.exsoinn.practice.algorithm;
  */
 public class RotateMatrixByNinetyDegrees {
 
+  public void rotateNinetyDegrees(int[][] matrix) {
+    int layers = matrix.length/2;
+    int matrixLen = matrix.length;
+    for (int layer = 0; layer < layers; layer++) {
+      int first = layer;
+      int last = matrixLen - 1 - layer;
+
+      for (int asc = first; asc < last; asc++) {
+        int desc = matrixLen - 1 - asc;
+
+        // save top
+        int save = matrix[asc][last];
+
+        // left -> top
+        matrix[asc][last] = matrix[first][asc];
+
+        // bottom -> left
+        matrix[first][asc] = matrix[desc][first];
+
+        // right -> bottom
+        matrix[desc][first] = matrix[last][desc];
+
+        // top -> right
+        matrix[last][desc] = save; // saved top
+      }
+    }
+  }
+
 
   /**
    * See {@link RotateMatrixByNinetyDegrees}
    * @param m The matrix to rotate by 90 degrees, expressed as a 2- dimensional array
    */
-  void rotateNinetyDegrees(int[][] m) {
+  public void rotateNinetyDegreesOld(int[][] m) {
     final int dim = m.length;
     final int totalLayers = dim/2;
     for (int layer = 0; layer < totalLayers; layer++) {
@@ -106,7 +134,7 @@ public class RotateMatrixByNinetyDegrees {
       /*
        * The rotation is done clock-wise. We rotate **each element one at a time** all the way around,
        * beginning from left row, swapping each element there with the bottom row, and so on until we
-       * work our way to the top riw. An entire row is swapped, one element at at time, on each layer
+       * work our way to the top row. An entire row is swapped, one element at a time, on each layer
        * iteration (the outer for() loop.
        *
        * Notice we only need 3 swaps. Why?
