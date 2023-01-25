@@ -1,6 +1,6 @@
 package com.exsoinn.practice.algorithm.linkedList;
 
-import com.exsoinn.practice.algorithm.Node;
+import com.exsoinn.practice.algorithm.ListNode;
 import junit.framework.TestCase;
 
 /**
@@ -12,8 +12,8 @@ public class RemoveDupsTest extends TestCase {
 
   public void testRemoveDups() {
     Integer[] nums = {5, 1, 8, 5, 94, 23, 94, 63, 1};
-    Node<Integer> lst = Node.buildList(nums);
+    ListNode<Integer> lst = ListNode.buildList(nums);
     removeDups.removeDups(lst);
-    assertEquals("518942363", Node.converToString(lst));
+    assertEquals("518942363", ListNode.converToString(lst));
   }
 }

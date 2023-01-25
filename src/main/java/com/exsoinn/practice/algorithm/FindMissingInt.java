@@ -40,6 +40,9 @@ public class FindMissingInt {
         return num;
       }
     }
+
+    // TODO: Alternate way, iterate over the array of bytes
+
     return -1L; // all "integers" accounted for
   }
 }

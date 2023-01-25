@@ -1,6 +1,6 @@
 package com.exsoinn.practice.algorithm.linkedList;
 
-import com.exsoinn.practice.algorithm.Node;
+import com.exsoinn.practice.algorithm.ListNode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -15,23 +15,23 @@ import java.util.Stack;
  */
 public class LinkedListIsPalindrome {
 
-  private static boolean isPalindrome(Node<Character> head) {
+  private static boolean isPalindrome(ListNode<Character> head) {
     if (null == head) {
       return false;
     }
 
     int size;
-    if ((size = Node.size(head)) == 1) {
+    if ((size = ListNode.size(head)) == 1) {
       return true;
     }
     head = removeNonAlpha(head);
-    if ((size = Node.size(head)) == 0) {
+    if ((size = ListNode.size(head)) == 0) {
       // Only special characters contained in string
       // QUESTION: Can palindromes be all non-alpha char's?
       return false;
     }
 
-    if ((size = Node.size(head)) == 1) {
+    if ((size = ListNode.size(head)) == 1) {
       // After stripping all special characters, only one strig
       return true;
     }
@@ -40,7 +40,7 @@ public class LinkedListIsPalindrome {
     int mid = size / 2;
     int i = 1;
     Stack<Character> stk = new Stack<>();
-    Node<Character> n = head;
+    ListNode<Character> n = head;
     while (null != n) {
       // In odd character count scenario, the middle character acts as the pivot point of list,
       // hence does not make sense comparing it to another character, because to its left and right there's
@@ -77,13 +77,13 @@ public class LinkedListIsPalindrome {
 
 
 
-  private static Node<Character> removeNonAlpha(Node<Character> head) {
+  private static ListNode<Character> removeNonAlpha(ListNode<Character> head) {
     // Deal with leading non-alpha's
     while (null != head && !isAlpha(head.getData())) {
       head = head.getNext();
     }
 
-    Node<Character> n = head;
+    ListNode<Character> n = head;
     while (null != n.getNext()) {
       if (!isAlpha(n.getNext().getData())) {
         n.setNext(n.getNext().getNext());
@@ -104,7 +104,7 @@ public class LinkedListIsPalindrome {
 
 
   public static void main(String[] args) {
-    List<Node<Character>> heads = new ArrayList<>();
+    List<ListNode<Character>> heads = new ArrayList<>();
     Character[] chars = {'t', 'o', 'o', 't'};
     //heads.add(buildList(chars));
     Character[] chars2 = {'t', 'o', 't'};
@@ -114,17 +114,17 @@ public class LinkedListIsPalindrome {
     //heads.add(buildList(chars3));
     Character[] chars4 = {'W', 'a', 's', ' ', 'i', 't', ' ', 'e', 'l', 'i', 'o', 't', '\'', 's',
             ' ', 't', 'o', 'i', 'l', 'e', 't', ' ', 'I', ' ', 's', 'a', 'w', '?'};
-    heads.add(Node.buildList(chars4));
-    for (Node<Character> h : heads) {
-      Node.printList(h);
+    heads.add(ListNode.buildList(chars4));
+    for (ListNode<Character> h : heads) {
+      ListNode.printList(h);
       System.out.println("Is it a palindrome? " + isPalindrome(h));
       System.out.println("");
     }
   }
 
-  private static Node<Character> buildList(char[] ary) {
-    Node<Character> head = new Node<>();
-    Node n = head;
+  private static ListNode<Character> buildList(char[] ary) {
+    ListNode<Character> head = new ListNode<>();
+    ListNode n = head;
     int cnt = 0;
     for (char c : ary) {
       n.setData(c);
@@ -133,7 +133,7 @@ public class LinkedListIsPalindrome {
       // last should be the last node to which a non-null next reference gets assigned. Anything after
       // that will bear NULL net reference
       if (cnt < ary.length - 1) {
-        Node<Character> newNode = new Node<>();
+        ListNode<Character> newNode = new ListNode<>();
         n.setNext(newNode);
         n = newNode;
       }

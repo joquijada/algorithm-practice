@@ -1,6 +1,6 @@
 package com.exsoinn.practice.algorithm.linkedList;
 
-import com.exsoinn.practice.algorithm.Node;
+import com.exsoinn.practice.algorithm.ListNode;
 
 /**
  * <pre>
@@ -25,7 +25,7 @@ import com.exsoinn.practice.algorithm.Node;
  */
 public class FindKthToLast {
 
-  Found findKthToLast(Node<Integer> n, int k) {
+  Found findKthToLast(ListNode<Integer> n, int k) {
     if (null == n) {
       // This will return one for the index of the calling node, namely the last one
       // in the linked list. How do we know it's the last one? Because what came after it
@@ -33,7 +33,7 @@ public class FindKthToLast {
       return new Found(null, 1);
     }
 
-    Found<Node<Integer>> f = findKthToLast(n.next(), k);
+    Found<ListNode<Integer>> f = findKthToLast(n.next(), k);
 
     // As the function unwinds, check if this node's position corresponds
     // to the requested one, and if so set it in the return Found object

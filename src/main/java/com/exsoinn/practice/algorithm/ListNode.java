@@ -8,16 +8,16 @@ import java.util.stream.Collectors;
 /**
  * @author josequijada
  */
-public class Node<T> {
+public class ListNode<T> {
   private T data;
-  private Node<T> next = null;
-  private Node<T> prev = null;
+  private ListNode<T> next = null;
+  private ListNode<T> prev = null;
 
-  public Node() {
+  public ListNode() {
     this(null);
   }
 
-  public Node(T pData) {
+  public ListNode(T pData) {
     this.data = pData;
   }
 
@@ -37,40 +37,40 @@ public class Node<T> {
     this.data = data;
   }
 
-  public Node<T> getNext() {
+  public ListNode<T> getNext() {
     return next;
   }
 
-  public Node<T> next() {
+  public ListNode<T> next() {
     return getNext();
   }
 
-  public void setNext(Node<T> next) {
+  public void setNext(ListNode<T> next) {
     this.next = next;
   }
 
-  public void next(Node<T> next) {
+  public void next(ListNode<T> next) {
     this.setNext(next);
   }
 
 
 
-  public Node<T> getPrev() {
+  public ListNode<T> getPrev() {
     return prev;
   }
 
-  public void prev(Node<T> prev) {
+  public void prev(ListNode<T> prev) {
     this.setPrev(prev);
   }
 
-  public void setPrev(Node<T> prev) {
+  public void setPrev(ListNode<T> prev) {
     this.prev = prev;
   }
 
 
-  public static <U> Node<U> buildList(U[] ary) {
-    Node<U> head = new Node<>();
-    Node n = head;
+  public static <U> ListNode<U> buildList(U[] ary) {
+    ListNode<U> head = new ListNode<>();
+    ListNode n = head;
     int cnt = 0;
     for (U thing : ary) {
       n.setData(thing);
@@ -79,7 +79,7 @@ public class Node<T> {
       // last should be the last node to which a non-null next reference gets assigned. Anything after
       // that will bear NULL net reference
       if (cnt < ary.length - 1) {
-        Node<U> newNode = new Node<>();
+        ListNode<U> newNode = new ListNode<>();
         n.setNext(newNode);
         n = newNode;
       }
@@ -89,11 +89,11 @@ public class Node<T> {
   }
 
 
-  public static <U> Node<U> convertFromLinkedList(LinkedList<U> pList) {
-    Node<U> headNode = null;
-    Node<U> prevNode = null;
+  public static <U> ListNode<U> convertFromLinkedList(LinkedList<U> pList) {
+    ListNode<U> headNode = null;
+    ListNode<U> prevNode = null;
     for (U n : pList) {
-      Node<U> curNode =new Node<>();
+      ListNode<U> curNode =new ListNode<>();
       if (null == headNode) {
         headNode = curNode;
       }
@@ -108,9 +108,9 @@ public class Node<T> {
   }
 
 
-  public static String converToString(Node<Integer> n) {
+  public static String converToString(ListNode<Integer> n) {
     Collection<Object> nums = new ArrayList<>();
-    Node.printList(n, nums);
+    ListNode.printList(n, nums);
     System.out.println();
     return nums.stream().map(e -> e.toString()).collect(Collectors.joining(""));
   }
@@ -124,10 +124,10 @@ public class Node<T> {
    * @param <U>
    * @return
    */
-  public static <U> Node<U> pad(Node<U> n, int num, U val) {
-    Node<U> newHead = n;
+  public static <U> ListNode<U> pad(ListNode<U> n, int num, U val) {
+    ListNode<U> newHead = n;
     for (int i = 0; i < num; i++) {
-      newHead = new Node<>();
+      newHead = new ListNode<>();
       newHead.next(n);
       newHead.data(val);
       n = newHead;
@@ -136,16 +136,16 @@ public class Node<T> {
   }
 
   /**
-   * Used a wild card because this method can print any type of {@link Node} (I.e. it invokes
+   * Used a wild card because this method can print any type of {@link ListNode} (I.e. it invokes
    * {@link Object} methods only).
    * @param head
    */
-  public static void printList(Node<?> head) {
+  public static void printList(ListNode<?> head) {
     printList(head, null);
   }
 
 
-  public static void printList(Node<?> head, Collection<? super Object> res) {
+  public static void printList(ListNode<?> head, Collection<? super Object> res) {
     int size = 0;
     if (null != head) {
       size = size(head);
@@ -174,7 +174,7 @@ public class Node<T> {
 
 
 
-  public static int size(Node<?> n) {
+  public static int size(ListNode<?> n) {
     int cnt = 0;
     while (n != null) {
       ++cnt;

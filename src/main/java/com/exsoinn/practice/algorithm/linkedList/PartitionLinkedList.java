@@ -1,6 +1,6 @@
 package com.exsoinn.practice.algorithm.linkedList;
 
-import com.exsoinn.practice.algorithm.Node;
+import com.exsoinn.practice.algorithm.ListNode;
 import com.exsoinn.practice.algorithm.TreeNode;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -12,13 +12,13 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class PartitionLinkedList {
 
-  public Node<Integer> partitionAroundX(Node<Integer> h, int x, boolean simpler) {
+  public ListNode<Integer> partitionAroundX(ListNode<Integer> h, int x, boolean simpler) {
     if (null == h || null == h.getNext()) {
       return null;
     }
 
     // Find the node to partition around
-    Node<Integer> n = findNode(h, x);
+    ListNode<Integer> n = findNode(h, x);
 
     if (null == n) {
       return null;
@@ -38,12 +38,12 @@ public class PartitionLinkedList {
   }
 
 
-  private Node<Integer> findNode(Node<Integer> h, int x) {
+  private ListNode<Integer> findNode(ListNode<Integer> h, int x) {
     if (h.getData() == x) {
       return h;
     }
 
-    Node<Integer> n = h;
+    ListNode<Integer> n = h;
     while (null != n) {
       if (n.getData() == x) {
         return n;
@@ -54,8 +54,8 @@ public class PartitionLinkedList {
     return null;
   }
 
-  private void addNodes(Node<Integer> h, TreeNode<Integer> root) {
-    Node<Integer> n = h;
+  private void addNodes(ListNode<Integer> h, TreeNode<Integer> root) {
+    ListNode<Integer> n = h;
     while (null != n) {
       if (root.getData() != n.getData()) {
         // Avoid adding partition value X again to tree, it is already root of tree in
@@ -67,7 +67,7 @@ public class PartitionLinkedList {
   }
 
 
-  private void insertTreeNode(Node<Integer> n, TreeNode<Integer> tn) {
+  private void insertTreeNode(ListNode<Integer> n, TreeNode<Integer> tn) {
     TreeNode<Integer> newTreeNode = new TreeNode<>(n.getData());
     while (true) {
       if (newTreeNode.getData() < tn.getData()) {
@@ -89,8 +89,8 @@ public class PartitionLinkedList {
   }
 
 
-  private Node<Integer> convertToLinkedList(TreeNode<Integer> root, boolean simpler) {
-    AtomicReference<Node<Integer>> holder = new AtomicReference<>();
+  private ListNode<Integer> convertToLinkedList(TreeNode<Integer> root, boolean simpler) {
+    AtomicReference<ListNode<Integer>> holder = new AtomicReference<>();
     if (simpler) {
       convertToLinkedListHelperSimpler(root, holder);
     } else {
@@ -106,16 +106,16 @@ public class PartitionLinkedList {
    * biggest number. The Holder<Node> is passed to capture head; this is an imperative operation,
    * meaning that the function will populate head node via side-effects
    */
-  private Node<Integer> convertToLinkedListHelper(TreeNode<Integer> root,
-          AtomicReference<Node<Integer>> h) {
+  private ListNode<Integer> convertToLinkedListHelper(TreeNode<Integer> root,
+                                                      AtomicReference<ListNode<Integer>> h) {
     if (null == root) {
       return null;
     }
 
     // Build a new linked list node for current node
-    Node<Integer> newNode = new Node<>(root.getData());
+    ListNode<Integer> newNode = new ListNode<>(root.getData());
 
-    Node<Integer> left = convertToLinkedListHelper(root.getLeft(), h);
+    ListNode<Integer> left = convertToLinkedListHelper(root.getLeft(), h);
 
     // Save head, which is essentially the left-most and first visited node in the tree
     if (null == h.get()) {
@@ -134,7 +134,7 @@ public class PartitionLinkedList {
       }
     }
 
-    Node<Integer> right = convertToLinkedListHelper(root.getRight(), h);
+    ListNode<Integer> right = convertToLinkedListHelper(root.getRight(), h);
 
     // When the right node returns, find the left most (beginning of partial linked list),
     // then connect it to current node. That's because anything to the right of root is >= to root
@@ -155,13 +155,13 @@ public class PartitionLinkedList {
 
 
   private void convertToLinkedListHelperSimpler(TreeNode<Integer> root,
-          AtomicReference<Node<Integer>> h) {
+          AtomicReference<ListNode<Integer>> h) {
     if (null == root) {
       return;
     }
 
     // Build a new linked list node fof the currently visited tree node
-    Node<Integer> newNode = new Node<>(root.getData());
+    ListNode<Integer> newNode = new ListNode<>(root.getData());
 
     // This will request into the deepest, left most node of the BST, which by consequence
     // is the smallest, since we're dealing with a BST
@@ -172,7 +172,7 @@ public class PartitionLinkedList {
       h.set(newNode);
     } else {
       // Else, add this tree node (root) to the end of the list
-      Node<Integer> n = h.get();
+      ListNode<Integer> n = h.get();
       // Need to find tail since we're not given a pointer to it, only to head
       while (null != n.getNext()) {
         n = n.getNext();
@@ -186,10 +186,10 @@ public class PartitionLinkedList {
 
   public static void main(String[] pArgs) {
     Integer[] ary = {10, 3, 16, 20, 1, 8};
-    Node<Integer> h = Node.buildList(ary);
+    ListNode<Integer> h = ListNode.buildList(ary);
     PartitionLinkedList pll = new PartitionLinkedList();
-    Node.printList(pll.partitionAroundX(h, 10, false));
+    ListNode.printList(pll.partitionAroundX(h, 10, false));
     System.out.println("\n");
-    Node.printList(pll.partitionAroundX(h, 10, true));
+    ListNode.printList(pll.partitionAroundX(h, 10, true));
   }
 }

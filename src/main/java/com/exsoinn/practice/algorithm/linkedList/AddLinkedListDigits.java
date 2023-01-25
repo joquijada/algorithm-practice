@@ -1,7 +1,7 @@
 package com.exsoinn.practice.algorithm.linkedList;
 
 
-import com.exsoinn.practice.algorithm.Node;
+import com.exsoinn.practice.algorithm.ListNode;
 import java.util.LinkedList;
 
 /**
@@ -54,11 +54,11 @@ import java.util.LinkedList;
  */
 public class AddLinkedListDigits {
 
-  public Node<Integer> add(Node<Integer> n1, Node<Integer> n2) {
+  public ListNode<Integer> add(ListNode<Integer> n1, ListNode<Integer> n2) {
     return add(n1, n2, 0);
   }
 
-  private static Node<Integer> add(Node<Integer> n1, Node<Integer> n2, int rem) {
+  private static ListNode<Integer> add(ListNode<Integer> n1, ListNode<Integer> n2, int rem) {
     if (null == n1 && null == n2 && rem == 0) {
       return null;
     }
@@ -81,10 +81,10 @@ public class AddLinkedListDigits {
      */
     res = res % 10;
 
-    Node<Integer> n = new Node<>();
+    ListNode<Integer> n = new ListNode<>();
     n.setData(res);
 
-    Node<Integer> newNode = add(null != n1 ? n1.getNext() : null, null != n2 ? n2.getNext() : null,
+    ListNode<Integer> newNode = add(null != n1 ? n1.getNext() : null, null != n2 ? n2.getNext() : null,
             rem);
 
     n.setNext(newNode);
@@ -99,7 +99,7 @@ public class AddLinkedListDigits {
    * results of adding the two input lists. Another difference is that this method checks if the end
    * of both lists to
    */
-  void add2(LinkedList<Integer> newList, Node<Integer> lst1, Node<Integer> lst2, int carry) {
+  void add2(LinkedList<Integer> newList, ListNode<Integer> lst1, ListNode<Integer> lst2, int carry) {
     if (null == lst1 && null == lst2 && carry == 0) {
       return;
     }
@@ -131,21 +131,21 @@ public class AddLinkedListDigits {
     }
   }
 
-  LinkedList<Integer> add2(Node<Integer> lst1, Node<Integer> lst2) {
+  LinkedList<Integer> add2(ListNode<Integer> lst1, ListNode<Integer> lst2) {
     LinkedList<Integer> l = new LinkedList<>();
     add2(l, lst1, lst2, 0);
     return l;
   }
 
 
-  public Node<Integer> addForwardOrder(Node<Integer> lst1, Node<Integer> lst2) {
+  public ListNode<Integer> addForwardOrder(ListNode<Integer> lst1, ListNode<Integer> lst2) {
     // Make lists both the same length by padding 0's in front as needed
     // so that they are the same length
-    int size1 = Node.size(lst1);
-    int size2 = Node.size(lst2);
-    Node<Integer> toPad = size1 > size2 ? lst2 : (size1 < size2 ? lst1 : null);
+    int size1 = ListNode.size(lst1);
+    int size2 = ListNode.size(lst2);
+    ListNode<Integer> toPad = size1 > size2 ? lst2 : (size1 < size2 ? lst1 : null);
     if (null != toPad) {
-      Node<Integer> newHead = Node.pad(toPad, Math.abs(size1 - size2), 0);
+      ListNode<Integer> newHead = ListNode.pad(toPad, Math.abs(size1 - size2), 0);
       // Figure out which head node to update
       if (toPad == lst1) {
         lst1 = newHead;
@@ -158,7 +158,7 @@ public class AddLinkedListDigits {
 
     // Don't forget to create a node for last carry amount if any
     if (r.carry() != 0) {
-      Node<Integer> carry = new Node<>();
+      ListNode<Integer> carry = new ListNode<>();
       carry.data(r.carry());
       carry.next(r.node());
       return carry;
@@ -168,13 +168,13 @@ public class AddLinkedListDigits {
   }
 
 
-  private Result addForwardOrderHelper(Node<Integer> lst1, Node<Integer> lst2) {
+  private Result addForwardOrderHelper(ListNode<Integer> lst1, ListNode<Integer> lst2) {
     Result prevRes = null;
     if (null != lst1.next() && null != lst2.next()) {
       prevRes = addForwardOrderHelper(lst1.next(), lst2.next());
     }
 
-    Node<Integer> prevNode = null;
+    ListNode<Integer> prevNode = null;
     int prevCarry = 0;
     if (null != prevRes) {
       prevCarry = prevRes.carry();
@@ -186,7 +186,7 @@ public class AddLinkedListDigits {
     int carry = res / 10;
     res %= 10;
 
-    Node<Integer> n = new Node<>();
+    ListNode<Integer> n = new ListNode<>();
     n.next(prevNode);
     Result r = new Result();
     n.data(res);
@@ -200,14 +200,14 @@ public class AddLinkedListDigits {
 
   private static class Result<T> {
 
-    private Node<T> node = null;
+    private ListNode<T> node = null;
     private int carry = 0;
 
-    private Node<T> node() {
+    private ListNode<T> node() {
       return node;
     }
 
-    private void node(Node<T> n) {
+    private void node(ListNode<T> n) {
       node = n;
     }
 

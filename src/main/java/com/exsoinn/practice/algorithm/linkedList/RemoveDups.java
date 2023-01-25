@@ -1,6 +1,6 @@
 package com.exsoinn.practice.algorithm.linkedList;
 
-import com.exsoinn.practice.algorithm.Node;
+import com.exsoinn.practice.algorithm.ListNode;
 
 /**
  * <pre>
@@ -50,10 +50,10 @@ import com.exsoinn.practice.algorithm.Node;
  * @author josequijada
  */
 public class RemoveDups {
-  public void removeDups(Node<Integer> head) {
+  public void removeDups(ListNode<Integer> head) {
 
-    Node<Integer> cur = head;
-    Node<Integer> la = cur;
+    ListNode<Integer> cur = head;
+    ListNode<Integer> la = cur;
 
     while (null != cur.next()) {
       // Look ahead in front of "cur" to the end of list, removing
