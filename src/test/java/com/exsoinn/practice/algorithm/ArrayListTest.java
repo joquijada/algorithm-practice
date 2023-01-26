@@ -40,6 +40,15 @@ public class ArrayListTest extends TestCase {
     assertEquals(113, l.size());
   }
 
+  public void testGet() {
+    ArrayList<String> l = createList();
+    l.delete("two");
+    assertEquals("three", l.get(1));
+
+    ArrayList<String> l2 = createList();
+    assertEquals(null, l2.get(3));
+  }
+
   private ArrayList<String> createList() {
     ArrayList<String> l = new ArrayList<>();
     l.add("one").add("two").add("three");

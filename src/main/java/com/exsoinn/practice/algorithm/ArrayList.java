@@ -37,6 +37,24 @@ public class ArrayList<E> {
     return false;
   }
 
+  public Object get(int i) {
+    int cur = 0;
+    int nonNullIdx = 0;
+    while (cur < ary.length) {
+      while (cur < ary.length && ary[cur] == null) {
+        ++cur;
+      }
+      while (cur < ary.length && ary[cur] != null) {
+        if (i == nonNullIdx) {
+          return ary[cur];
+        }
+        ++nonNullIdx;
+        ++cur;
+      }
+    }
+    return null;
+  }
+
   /**
    * Returns true if the given element is found in the list.
    */
