@@ -9,21 +9,13 @@ import java.lang.reflect.Array;
  * @author josequijada
  */
 public class Heap<T extends Number> {
-  // By default it's a min heap
+  // By default, it's a min heap
   private boolean min = true;
 
   private final static int MAX = 100;
 
   // Fix at 100 items max to avoid having to resize array
   private final T[] ary;
-
-  /*
-   * To capture at run time the class of the actual generic formal parameter type, see
-   * https://stackoverflow.com/questions/3437897/how-to-get-a-class-instance-of-generics-type-t which is
-   * where I got this from. This is used to tell this class the component/class type to use for the
-   * array that will back up this heap.
-   */
-  private final Class<T> actualTypeParameterClass;
 
   private int count = 0;
 
@@ -33,8 +25,13 @@ public class Heap<T extends Number> {
 
   public Heap(boolean pMin, Class<T> pActualTypeParam) {
     min = pMin;
-    actualTypeParameterClass = pActualTypeParam;
-    ary = (T[]) Array.newInstance(actualTypeParameterClass, MAX);
+    /*
+     * To capture at run time the class of the actual generic formal parameter type, see
+     * https://stackoverflow.com/questions/3437897/how-to-get-a-class-instance-of-generics-type-t which is
+     * where I got this from. This is used to tell this class the component/class type to use for the
+     * array that will back up this heap.
+     */
+    ary = (T[]) Array.newInstance(pActualTypeParam, MAX);
   }
 
 
