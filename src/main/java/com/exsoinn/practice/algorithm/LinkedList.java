@@ -61,7 +61,7 @@ public class LinkedList<E> {
       return true;
     }
 
-    // At this point safe to assume head did not match, else we wouldn't have come here (I.e.head matched above)
+    // At this point safe to assume head did not match, else we wouldn't have come here (I.e. head matched above)
     // hence perfectly OK to advance to next node after head, which could very well be NULL if we're talking about
     // a one element list.
     Node<E> cur = head.next;
