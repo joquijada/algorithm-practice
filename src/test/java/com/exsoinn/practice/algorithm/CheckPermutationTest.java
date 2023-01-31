@@ -10,6 +10,7 @@ public class CheckPermutationTest extends TestCase {
 
   public void testIsPermutation() {
     assertEquals(true, checkPermutation.permutation("abcd", "cabd"));
+    assertEquals(true, checkPermutation.permutation("abc\u0000d", "\u0000cabd"));
   }
 
 

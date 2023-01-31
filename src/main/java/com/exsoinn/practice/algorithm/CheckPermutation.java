@@ -6,16 +6,25 @@ public class CheckPermutation {
       return false;
     }
 
-    int switches = 0;
+    int pageSize = Byte.SIZE;
+    byte[] switches = new byte[(Character.MAX_VALUE+1)/pageSize];
 
     for (int i = 0; i < s1.length(); i++) {
-      switches ^= 1 << (Character.toLowerCase(s1.charAt(i)) - 'a');
+      int charCode = s1.charAt(i);
+      switches[charCode/pageSize] ^= 1 << charCode%pageSize;
     }
 
     for (int i = 0; i < s2.length(); i++) {
-      switches ^= 1 << (Character.toLowerCase(s2.charAt(i)) - 'a');
+      int charCode = s2.charAt(i);
+      switches[charCode/pageSize] ^= 1 << charCode%pageSize;
     }
 
-    return (switches & (~1 ^ 1)) == 0;
+    // If String B was a permutation of A, the switches should all be 0.
+    for (int i = 0; i < switches.length; i++) {
+      if ((switches[i] & (~1 ^ 1)) != 0) {
+        return false;
+      }
+    }
+    return true;
   }
 }
