@@ -9,11 +9,11 @@ public class CheckPermutationTest extends TestCase {
   private CheckPermutation checkPermutation = new CheckPermutation();
 
   public void testIsPermutation() {
-    assertEquals(true, checkPermutation.permutation("WHat the heck is this?", "this what heck is the"));
+    assertEquals(true, checkPermutation.permutation("abcd", "cabd"));
   }
 
 
   public void testNoPermutation() {
-    assertEquals(false, checkPermutation.permutation("WHat the check is this?", "thiswhatheckthe"));
+    assertEquals(false, checkPermutation.permutation("abcd", "egab"));
   }
 }

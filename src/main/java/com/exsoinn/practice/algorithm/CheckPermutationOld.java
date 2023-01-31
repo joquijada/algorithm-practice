@@ -59,7 +59,7 @@ import java.util.Optional;
  *
  * @author josequijada
  */
-public class CheckPermutation {
+public class CheckPermutationOld {
   boolean permutation(String str1, String str2) {
     Map<Character, Integer> charCnt = new HashMap<>();
     checkMap(str1, charCnt, true);
