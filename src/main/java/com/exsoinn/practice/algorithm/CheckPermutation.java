@@ -16,6 +16,6 @@ public class CheckPermutation {
       switches ^= 1 << (Character.toLowerCase(s2.charAt(i)) - 'a');
     }
 
-    return (switches & 1) == 0;
+    return (switches & (~1 ^ 1)) == 0;
   }
 }

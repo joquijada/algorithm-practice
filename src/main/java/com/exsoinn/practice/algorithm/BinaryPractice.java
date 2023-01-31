@@ -151,7 +151,7 @@ public class BinaryPractice {
     //int i2 = 23;
     //System.out.println("Negation of " + i2 + " is: " + Integer.toBinaryString(-i2));
     //System.out.println("(1 << " + i2 + ") - 1) is: " + Integer.toBinaryString((1 << i2) - 1));
-    System.out.println(Integer.toBinaryString(-6));
+    System.out.println(Integer.toBinaryString(-2));
   }
 
 

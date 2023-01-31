@@ -7,7 +7,15 @@ public class StringPractice {
 
   private static void testCharacterApi() {
     System.out.println("'A' numeric value is " + Character.getNumericValue('A'));
-    System.out.println("'a' numeric value is " +Character.getNumericValue('a'));
+    System.out.println("'a' numeric value is " + Character.getNumericValue('a'));
+    System.out.println("'\u0000' numeric value is " + Character.getNumericValue('\u0000'));
+    System.out.println("Integer 65535 is char " + (char)65535);
+    // In next line we exceed Character.MAX_VALUE by 1 on purpose, and it circles back to 0 (NULL),
+    // which means 'char' is modular just like the rest of primitive types in Java!
+    System.out.println("Integer 65536 is char " + (char)65536);
+    System.out.println("Integer 1 is char " + (char)1);
+    System.out.println("Char \u0000 is " + (int)'\u0000');
+    System.out.println("Char A is " + (int)'A');
   }
 
   public static String reverse(String pStr) {
@@ -54,7 +62,7 @@ public class StringPractice {
      * "cd".substring(2) will return empty string, but "cd".substring(3)
      * will throw IndexOutOfBoundsException
      */
-    String subStr2 = str.substring(idx + 1);
+    /*String subStr2 = str.substring(idx + 1);
     String rem = subStr1 + " " + subStr2;
     System.out.println("rem is " + rem);
     System.out.println("str.charAt(" + idx + ") (prefix) is " + str.charAt(idx));
@@ -63,12 +71,12 @@ public class StringPractice {
     System.out.println("Reverse of " + toReverse + " is " + reverse(toReverse));
 
     String s2 = "abc";
-    subString("abc", 0, 0);
+    subString("abc", 0, 0);*/
 
     testCharacterApi();
 
-    String same = new String("same");
-    System.out.println("'same' == 'same'? " + ("same" == "same".intern()));
+    //String same = new String("same");
+    //System.out.println("'same' == 'same'? " + ("same" == "same".intern()));
   }
 
 }
