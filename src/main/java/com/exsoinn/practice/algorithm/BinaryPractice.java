@@ -40,14 +40,14 @@ public class BinaryPractice {
 
 
   /**
-   * Exploits the fact that Java uses 1's (or is it 2's) complement to represent negative numbers.
+   * Exploits the fact that Java uses 2's complement to represent negative numbers.
    * For example -25 is represented as a 7 in the 5 least significant bits (bits 4 - 0), and all
    * ones in bits 31 - 5.
    * 11111111111111111111111111111111
    * When using a number like this as the shifter, the first 5 least significant
    * bits are used if the shiftee is an integer (if shiftee was a byte, then only the first 3 least significant bits
-   * get used), etc.. The reason for this is that 5 bits is enough to
-   * represent all integers 0 - 31 (2^32) - what's the point in in having a number greater than
+   * get used), etc. The reason for this is that 5 bits is enough to
+   * represent all integers 31 - 0 (2^32) - what's the point in having a number greater than
    * 2^5 if there are only 5 bits??? Example (pretend we're dealing with byte's instead of
    * int's, to save space):
    *
@@ -151,7 +151,7 @@ public class BinaryPractice {
     //int i2 = 23;
     //System.out.println("Negation of " + i2 + " is: " + Integer.toBinaryString(-i2));
     //System.out.println("(1 << " + i2 + ") - 1) is: " + Integer.toBinaryString((1 << i2) - 1));
-    System.out.println(Integer.toBinaryString(-3));
+    System.out.println(Integer.toBinaryString(-6));
   }
 
 
