@@ -75,7 +75,7 @@ import com.exsoinn.practice.algorithm.util.Util;
  *
  * @author josequijada
  */
-public class PermutationOfPalindrome {
+public class PermutationOfPalindromeOld {
   private final static Palindrome palindrome = new Palindrome();
 
   boolean isPalindromePermutationHorrendous(final String str) {
