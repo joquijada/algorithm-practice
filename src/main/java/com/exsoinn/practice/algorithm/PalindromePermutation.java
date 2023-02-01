@@ -14,15 +14,15 @@ public class PalindromePermutation {
       letters ^= 1 << Character.toLowerCase(cur) - 'a';
     }
 
-    // Now check that at most only letter has an odd number of appearances
+    // Now check that at most only one letter has an odd number of appearances
     int cnt = 0;
-    int oddCnt = 0;
+    boolean oddCntFound = false;
     while (cnt < 32) {
       if ((letters & 1 << cnt) != 0) {
-        ++oddCnt;
-      }
-      if (oddCnt > 1) {
-        return false;
+        if (oddCntFound) {
+          return false;
+        }
+        oddCntFound = true;
       }
       ++cnt;
     }

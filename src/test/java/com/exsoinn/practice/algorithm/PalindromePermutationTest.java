@@ -13,6 +13,7 @@ public class PalindromePermutationTest extends TestCase {
 
   public void testIsPalindromePermutation() {
     assertTrue(palindromePermutation.palindromePermutation("Tact Coa"));
+    assertTrue(palindromePermutation.palindromePermutation("oTact Coa"));
   }
 
   public void testIsNotPalindromePermutation() {
