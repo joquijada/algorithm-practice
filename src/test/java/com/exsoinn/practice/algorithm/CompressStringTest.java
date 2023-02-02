@@ -7,26 +7,10 @@ import junit.framework.TestCase;
  */
 public class CompressStringTest extends TestCase {
 
-  private static final String str1 = "AAaaaAAaaaAAAbbqpr";
-  private static final String str1Compressed = "a13b2q1p1r1";
-
-  private static final String str2 = "AbC";
-  private static final String str2Compressed = "AbC";
-
   private CompressString compressString = new CompressString();
 
   public void testCompress() {
-    assertEquals(str1Compressed, compressString.compress(str1));
-    assertEquals(str2Compressed, compressString.compress(str2));
-  }
-
-  public void testCompressEarlier() {
-    assertEquals(str1Compressed, compressString.compressEarlier(str1));
-    assertEquals(str2Compressed, compressString.compressEarlier(str2));
-  }
-
-  public void testCompressSimpler() {
-    assertEquals(str1Compressed, compressString.compressSimpler(str1));
-    assertEquals(str2Compressed, compressString.compressSimpler(str2));
+    assertEquals("A2a3b3B3", compressString.compress("AAaaabbbBBB"));
+    assertEquals("AAaabbBB", compressString.compress("AAaabbBB"));
   }
 }
