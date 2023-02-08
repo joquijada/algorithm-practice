@@ -49,7 +49,7 @@ import com.exsoinn.practice.algorithm.ListNode;
  * </pre>
  * @author josequijada
  */
-public class RemoveDups {
+public class RemoveDupsOld {
   public void removeDups(ListNode<Integer> head) {
 
     ListNode<Integer> cur = head;

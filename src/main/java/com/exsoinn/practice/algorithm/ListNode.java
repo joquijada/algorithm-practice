@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
  * @author josequijada
  */
 public class ListNode<T> {
-  private T data;
-  private ListNode<T> next = null;
-  private ListNode<T> prev = null;
+  T data;
+  ListNode<T> next = null;
+  ListNode<T> prev = null;
 
   public ListNode() {
     this(null);
