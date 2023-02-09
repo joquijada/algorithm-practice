@@ -1,4 +1,4 @@
-package com.exsoinn.practice.algorithm.linkedList;
+package com.exsoinn.practice.algorithm;
 
 import com.exsoinn.practice.algorithm.ListNode;
 import com.exsoinn.practice.algorithm.RemoveDups;

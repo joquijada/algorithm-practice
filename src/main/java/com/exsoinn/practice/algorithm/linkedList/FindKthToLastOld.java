@@ -23,7 +23,7 @@ import com.exsoinn.practice.algorithm.ListNode;
  * </pre>
  * @author josequijada
  */
-public class FindKthToLast {
+public class FindKthToLastOld {
 
   Found findKthToLast(ListNode<Integer> n, int k) {
     if (null == n) {
