@@ -4,6 +4,25 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class Partition<E extends Number> {
+  public ListNode<E> partitionCci(ListNode<E> head, int x) {
+    ListNode<E> tail = head;
+    ListNode<E> node = head;
+    while (node != null) {
+      ListNode<E> next = node.next;
+      if (node.data.intValue() >= x) {
+        // add to tail
+        tail.next = node;
+        tail = node;
+      } else {
+        // add to head
+        node.next = head;
+        head = node;
+      }
+      node = next;
+    }
+    tail.next = null;
+    return head;
+  }
   public ListNode<E> partition(ListNode<E> head, int x) {
     // Create tail pointer and record length of list
     ListNode<E> tail = head;
