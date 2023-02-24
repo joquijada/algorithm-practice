@@ -108,7 +108,7 @@ public class ListNode<T> {
   }
 
 
-  public static String converToString(ListNode<Integer> n) {
+  public static String convertToString(ListNode<Integer> n) {
     Collection<Object> nums = new ArrayList<>();
     ListNode.printList(n, nums);
     System.out.println();

@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicReference;
  *
  * @author josequijada
  */
-public class PartitionLinkedList {
+public class PartitionLinkedListOld {
 
   public ListNode<Integer> partitionAroundX(ListNode<Integer> h, int x, boolean simpler) {
     if (null == h || null == h.getNext()) {
@@ -187,7 +187,7 @@ public class PartitionLinkedList {
   public static void main(String[] pArgs) {
     Integer[] ary = {10, 3, 16, 20, 1, 8};
     ListNode<Integer> h = ListNode.buildList(ary);
-    PartitionLinkedList pll = new PartitionLinkedList();
+    PartitionLinkedListOld pll = new PartitionLinkedListOld();
     ListNode.printList(pll.partitionAroundX(h, 10, false));
     System.out.println("\n");
     ListNode.printList(pll.partitionAroundX(h, 10, true));

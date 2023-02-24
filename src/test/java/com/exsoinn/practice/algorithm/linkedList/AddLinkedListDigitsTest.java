@@ -58,6 +58,6 @@ public class AddLinkedListDigitsTest extends TestCase {
 
 
   public static String converToString(ListNode<Integer> n) {
-    return ListNode.converToString(n);
+    return ListNode.convertToString(n);
   }
 }
